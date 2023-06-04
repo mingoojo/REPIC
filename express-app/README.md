@@ -21,3 +21,8 @@ ts환경에서 사용하기 위해 설치해야 하는 모듈
   npm intsall jsonwebtoken
   npm i --save-dev @types/jsonwebtoken
 }
+
+- get secret key by random :
+{
+  require('crypto').randomBytes(64).toString('hex')
+}
