@@ -1,6 +1,6 @@
-# frontend-survival-week06-answer
+# FireBase X React
 
-프론트엔드 생존코스 6주차 과제
+FireBase X React Study
 
 ## 서버 실행하기
 
