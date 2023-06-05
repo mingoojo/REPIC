@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import useLogin from '../hooks/useLogin';
+import useStore from '../hooks/useStore';
 
 const Div = styled.div`
 color : red;
@@ -10,6 +12,15 @@ export default function LogInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { error, isPending, login } = useLogin();
+  const store = useStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(store.state.UserInfo);
+    if (store.state.UserInfo) {
+      navigate('/', { replace: true });
+    }
+  }, [isPending]);
 
   function handleID(e : React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);

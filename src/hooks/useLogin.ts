@@ -18,6 +18,7 @@ export default function useLogin() {
     setIsPending(true);
     signInWithEmailAndPassword(appAuth, email, password).then((userCredential) => {
       const { user } = userCredential;
+      console.log(user);
       dispatch(getUserInfo(JSON.stringify(user)));
       setError(null);
       setIsPending(false);

@@ -1,8 +1,11 @@
 import { singleton } from 'tsyringe';
 import BaseStore, { Action } from './BaseStore';
 
+// const dispatch = useDispatch();
+
 const initialState = {
   UserInfo: '',
+  isAuthReady: false,
 };
 
 export type State = typeof initialState
@@ -14,6 +17,10 @@ export function logoutUser(payload = '') {
   return { type: 'LOGOUT', payload };
 }
 
+export function authReadyUser(payload:string) {
+  return { type: 'ISAUTHREADY', payload };
+}
+
 function reducer(state:State, action:Action) {
   switch (action.type) {
   case 'LOGIN':
@@ -23,6 +30,10 @@ function reducer(state:State, action:Action) {
   case 'LOGOUT':
     return {
       ...state, UserInfo: '',
+    };
+  case 'ISAUTHREADY':
+    return {
+      ...state, UserInfo: action.payload, isAuthReady: true,
     };
   default:
     return state;

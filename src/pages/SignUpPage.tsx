@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import useSginUp from '../hooks/useSginUp';
 import useStore from '../hooks/useStore';
@@ -12,6 +13,15 @@ export default function SignUpPage() {
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const { error, isPending, signup } = useSginUp();
+  const store = useStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(store.state.UserInfo);
+    if (store.state.UserInfo) {
+      navigate('/', { replace: true });
+    }
+  }, [isPending]);
 
   function handleID(e : React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
