@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import useSginUp from '../hooks/useSginUp';
-import useStore from '../hooks/useStore';
+import useSignUp from '../hooks/useSignUp';
 
 const Div = styled.div`
 color : red;
@@ -12,16 +10,7 @@ export default function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
-  const { error, isPending, signup } = useSginUp();
-  const store = useStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(store.state.UserInfo);
-    if (store.state.UserInfo) {
-      navigate('/', { replace: true });
-    }
-  }, [isPending]);
+  const { signUp, error, isPending } = useSignUp();
 
   function handleID(e : React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
@@ -34,7 +23,7 @@ export default function SignUpPage() {
   }
   function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    signup(email, password, displayName);
+    signUp({ email, password, displayName });
   }
   return (
     <Div>

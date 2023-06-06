@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import useLogin from '../hooks/useLogin';
-import useStore from '../hooks/useStore';
 
 const Div = styled.div`
 color : red;
@@ -11,16 +8,6 @@ color : red;
 export default function LogInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { error, isPending, login } = useLogin();
-  const store = useStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(store.state.UserInfo);
-    if (store.state.UserInfo) {
-      navigate('/', { replace: true });
-    }
-  }, [isPending]);
 
   function handleID(e : React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
@@ -30,7 +17,6 @@ export default function LogInPage() {
   }
   function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    login(email, password);
   }
   return (
     <Div>
@@ -45,10 +31,6 @@ export default function LogInPage() {
             PASSWORD
             <input type="password" name="PW" value={password} onChange={handlePW} />
           </label>
-          {
-            isPending ? <strong>로그인 진행중입니다.</strong> : <button type="submit">로그인</button>
-          }
-          { error && <strong>{error}</strong>}
         </fieldset>
       </form>
     </Div>
