@@ -1,11 +1,13 @@
 import { createUserWithEmailAndPassword, updateProfile, User } from 'firebase/auth';
 import { useState } from 'react';
 import { container } from 'tsyringe';
+import { useStore } from 'usestore-ts';
 import { appAuth } from '../firebase/config';
 import UserStore from '../store/UserStore';
 
 export default function useSignUp() {
-  const store = container.resolve(UserStore);
+  const userStore = container.resolve(UserStore);
+  const [, store] = useStore(userStore);
   // 에러 정보
   const [error, setError] = useState(null);
 

@@ -4,10 +4,17 @@ import { Store, Action } from 'usestore-ts';
 @singleton()
 @Store()
 export default class UserStore {
-  User = {};
+  UserInfo = {};
+
+  isAuthReady = false;
 
   @Action()
   UserUpdate(userinfo:any) {
-    this.User = userinfo;
+    this.UserInfo = userinfo;
+  }
+
+  @Action()
+  isAuthUpdate(userinfo:any) {
+    this.isAuthReady = userinfo;
   }
 }

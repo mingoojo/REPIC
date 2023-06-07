@@ -1,8 +1,13 @@
+import { User } from 'firebase/auth';
 import React, { useState } from 'react';
+import { appAuth } from '../../firebase/config';
+import useFirestore from '../../hooks/useFireStore';
 
 export default function DiaryForm() {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
+  const { uid } = appAuth.currentUser as User;
+  const { addDocument } = useFirestore('writenCollection');
 
   function handleTitle(e:React.ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value);
@@ -13,6 +18,9 @@ export default function DiaryForm() {
 
   function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (uid) {
+      addDocument({ uid, title, text });
+    }
   }
 
   return (

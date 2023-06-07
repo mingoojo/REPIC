@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import { appAuth } from '../firebase/config';
+import useLogin from '../hooks/useLogin';
 
 const Div = styled.div`
 color : red;
@@ -9,6 +11,8 @@ export default function LogInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { login, error, isPending } = useLogin();
+
   function handleID(e : React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
   }
@@ -17,6 +21,7 @@ export default function LogInPage() {
   }
   function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    login(email, password);
   }
   return (
     <Div>
@@ -32,6 +37,7 @@ export default function LogInPage() {
             <input type="password" name="PW" value={password} onChange={handlePW} />
           </label>
         </fieldset>
+        <button type="submit">submit </button>
       </form>
     </Div>
   );
