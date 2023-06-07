@@ -1,13 +1,18 @@
 import { User } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { container } from 'tsyringe';
+import { useStore } from 'usestore-ts';
 import { appAuth } from '../../firebase/config';
 import useFirestore from '../../hooks/useFireStore';
+import CollectionStore from '../../store/CollectionStore';
 
 export default function DiaryForm() {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const { uid } = appAuth.currentUser as User;
   const { addDocument } = useFirestore('writenCollection');
+  const collectionStore = container.resolve(CollectionStore);
+  const [{ success }] = useStore(collectionStore);
 
   function handleTitle(e:React.ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value);
@@ -22,6 +27,12 @@ export default function DiaryForm() {
       addDocument({ uid, title, text });
     }
   }
+  useEffect(() => {
+    if (success) {
+      setTitle('');
+      setText('');
+    }
+  }, [success]);
 
   return (
     <form onSubmit={handleSubmit}>

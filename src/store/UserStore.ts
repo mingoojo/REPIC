@@ -9,11 +9,13 @@ export default class UserStore {
   isAuthReady = false;
 
   @Action()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   UserUpdate(userinfo:any) {
     this.UserInfo = userinfo;
   }
 
   @Action()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isAuthUpdate(userinfo:any) {
     this.isAuthReady = userinfo;
   }

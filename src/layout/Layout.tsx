@@ -23,10 +23,6 @@ export default function Layout() {
     return unsubscribe();
   }, []);
 
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
-
   return (
     <div>
       {

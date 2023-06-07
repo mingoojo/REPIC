@@ -13,21 +13,25 @@ export default class CollectionStore {
   success = false;
 
   @Action()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   DocumentUpdate(payload:any) {
     this.document = payload;
   }
 
   @Action()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   IsPendingUpdate(payload:any) {
     this.isPending = payload;
   }
 
   @Action()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ErrorUpdate(payload:any) {
     this.error = payload;
   }
 
   @Action()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   SuccessUpdate(payload:any) {
     this.success = payload;
   }

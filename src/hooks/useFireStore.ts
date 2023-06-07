@@ -1,4 +1,6 @@
-import { addDoc, collection } from 'firebase/firestore';
+import {
+  addDoc, collection, deleteDoc, doc,
+} from 'firebase/firestore';
 import { container } from 'tsyringe';
 import { useStore } from 'usestore-ts';
 import { appFireStore, timeStamp } from '../firebase/config';
@@ -57,5 +59,29 @@ export default function useFirestore(transaction:string) {
     }
   };
 
-  return { addDocument };
+  // 콜랙션의 인자를 삭제합니다.
+  const deleteDocument = async (id:string) => {
+    // dispatch(isPending(''));
+    store.IsPendingUpdate(true);
+    store.DocumentUpdate(null);
+    store.SuccessUpdate(false);
+    store.ErrorUpdate(null);
+
+    try {
+      const docRef = await deleteDoc(doc(colRef, id));
+      store.IsPendingUpdate(false);
+      store.DocumentUpdate(docRef);
+      store.SuccessUpdate(true);
+      store.ErrorUpdate(null);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err:any) {
+      store.IsPendingUpdate(false);
+      store.DocumentUpdate(null);
+      store.SuccessUpdate(false);
+      store.ErrorUpdate(err.message);
+    }
+  };
+
+  return { addDocument, deleteDocument };
 }
