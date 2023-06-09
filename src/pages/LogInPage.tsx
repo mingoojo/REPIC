@@ -1,44 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { styled } from 'styled-components';
-import { appAuth } from '../firebase/config';
-import useLogin from '../hooks/useLogin';
+import React from 'react';
+import styled from 'styled-components';
+import useFetchLogin from '../hooks/useFetchLogin';
 
-const Div = styled.div`
-color : red;
+const Container = styled.div`
+  
 `;
 
 export default function LogInPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    email, setEmail, password, setPassword, Login,
+  } = useFetchLogin();
 
-  const { login, error, isPending } = useLogin();
-
-  function handleID(e : React.ChangeEvent<HTMLInputElement>) {
-    setEmail(e.target.value);
-  }
-  function handlePW(e : React.ChangeEvent<HTMLInputElement>) {
-    setPassword(e.target.value);
-  }
   function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    login(email, password);
+    Login();
   }
   return (
-    <Div>
-      <h3>login</h3>
+    <Container>
       <form onSubmit={handleSubmit}>
         <fieldset>
+          <legend>Log In</legend>
           <label>
-            ID
-            <input type="email" name="ID" value={email} onChange={handleID} />
+            E-mail
+            <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); }} />
           </label>
           <label>
-            PASSWORD
-            <input type="password" name="PW" value={password} onChange={handlePW} />
+            Password
+            <input type="password" value={password} onChange={(e) => { setPassword(e.target.value); }} />
           </label>
+          <button type="submit">submit</button>
         </fieldset>
-        <button type="submit">submit </button>
       </form>
-    </Div>
+    </Container>
   );
 }

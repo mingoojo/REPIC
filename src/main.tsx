@@ -1,21 +1,16 @@
 import 'reflect-metadata';
-
 import ReactDOM from 'react-dom/client';
-
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 function main() {
-  const container = document.getElementById('root');
-  if (!container) {
+  const element = document.getElementById('root');
+  if (!element) {
     return;
   }
 
-  const root = ReactDOM.createRoot(container);
+  const root = ReactDOM.createRoot(element);
   root.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
+    <App />,
   );
 }
 

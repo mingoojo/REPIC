@@ -1,7 +1,7 @@
 {
-  "name": "frontend-survival-week06-answer",
+  "name": "react-x-firebase-project",
   "version": "1.0.0",
-  "description": "프론트엔드 생존코스 6주차 과제",
+  "description": "React X Firebase Project",
   "source": "index.html",
   "scripts": {
     "start": "parcel --port 8080",
