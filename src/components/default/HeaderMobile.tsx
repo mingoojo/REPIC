@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { appAuth } from '../../firebase/config';
@@ -26,7 +27,7 @@ margin-block: 2rem;
   }
 `;
 
-export default function Header() {
+export default function HeaderMobile() {
   const userInfo = appAuth.currentUser;
   const navigate = useNavigate();
   const { LogOut } = useFetchLogOut();
@@ -43,10 +44,8 @@ export default function Header() {
               <>
                 <li>
                   <img className="headerLogo" src="/images/Logo.png" alt="test" />
-                  <Link to="/">Home</Link>
+                  <Link to="/">Mobile</Link>
                   <Link to="/community">Community</Link>
-                  <Link to="/projects">Project</Link>
-                  <Link to="/private">Private</Link>
                 </li>
                 <li>
                   <button type="button" onClick={handleLogout}>Log out</button>
@@ -58,7 +57,6 @@ export default function Header() {
                   <img className="headerLogo" src="/images/Logo.png" alt="test" />
                   <Link to="/">Home</Link>
                   <Link to="/community">Community</Link>
-                  <Link to="/projects">Project</Link>
                 </li>
                 <li>
                   <Link to="/signup">signup</Link>

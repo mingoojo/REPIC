@@ -1,12 +1,10 @@
 import Header from '../components/default/Header';
 
-export default function HomePage() {
+export default function CommunityPage() {
   return (
     <div>
       <Header />
-      <main>
-        main Div
-      </main>
+      <main>communityPage</main>
     </div>
   );
 }
