@@ -1,9 +1,12 @@
-import { signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, User,
+} from 'firebase/auth';
 import { container } from 'tsyringe';
 import { appAuth } from '../firebase/config';
 import UserStore from '../store/UserStore';
 
 type loginProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setError: (error:any) => void
   setIsPending: (isPending: boolean) => void
   email : string
@@ -11,8 +14,18 @@ type loginProps = {
 }
 
 type logoutProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setError: (error:any) => void
   setIsPending: (isPending: boolean) => void
+}
+
+type signUpProps = {
+  email:string
+  password:string
+  displayName :string
+  setIsPending : (isPending: boolean) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setError: (error:any) => void
 }
 
 export default class AuthApiService {
@@ -20,6 +33,7 @@ export default class AuthApiService {
 
   nullUser = {} as User;
 
+  // 로그인 기능
   login({
     setError, setIsPending, email, password,
   }:loginProps) {
@@ -34,6 +48,7 @@ export default class AuthApiService {
         setIsPending(false);
         // 회원 정보를 정상적으로 받지 못하면 실패입니다.
         this.store.UserUpdate(user);
+        // eslint-disable-next-line no-console
         console.log(user);
         if (!user) {
           throw new Error('로그인에 실패했습니다.');
@@ -47,6 +62,7 @@ export default class AuthApiService {
       });
   }
 
+  // 로그아웃 기능
   logout({
     setError, setIsPending,
   }:logoutProps) {
@@ -58,13 +74,44 @@ export default class AuthApiService {
       setError(null);
       setIsPending(false);
       this.store.UserUpdate(this.nullUser);
+      // eslint-disable-next-line no-console
       console.log(appAuth.currentUser);
-      console.log(this.store.UserInfo);
     }).catch((err) => {
       setError(err.message);
       setIsPending(false);
-      console.log(err.message);
     });
+  }
+
+  // 가입하기 기능
+  signUp({
+    email, password, displayName, setError, setIsPending,
+  }:signUpProps) {
+    setError(null);
+    setIsPending(true);
+
+    createUserWithEmailAndPassword(appAuth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const { user } = userCredential;
+        console.log(user);
+        if (!user) {
+          throw new Error('실패');
+        }
+        updateProfile(appAuth.currentUser as User, { displayName })
+          .then(() => {
+            this.store.UserUpdate(user);
+            setError(null);
+            setIsPending(false);
+          }).catch((err) => {
+            setError(err.message);
+            setIsPending(false);
+          });
+      })
+      .catch((Error) => {
+        const errorMessage = Error.message;
+        setError(errorMessage);
+        setIsPending(false);
+      });
   }
 }
 

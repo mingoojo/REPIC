@@ -7,8 +7,15 @@ import { Store, Action } from 'usestore-ts';
 export default class UserStore {
   UserInfo: User = {} as User;
 
+  isAuthReady = false;
+
   @Action()
-  UserUpdate(user:User) {
-    this.UserInfo = user;
+  UserUpdate(payload:User) {
+    this.UserInfo = payload;
+  }
+
+  @Action()
+  isAuthUpdate(payload:boolean) {
+    this.isAuthReady = payload;
   }
 }
