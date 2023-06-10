@@ -3,6 +3,8 @@ import * as firebase from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, Timestamp } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
+import { getApp } from 'firebase/app';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -18,8 +20,12 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 // const db = getFirestore(app);
 const analytics = getAnalytics(app);
+const firebaseApp = getApp();
 const appAuth = getAuth();
 const appFireStore = getFirestore();
 const timeStamp = Timestamp;
+const appStorage = getStorage(app);
 
-export { appAuth, appFireStore, timeStamp };
+export {
+  appAuth, appFireStore, timeStamp, appStorage,
+};

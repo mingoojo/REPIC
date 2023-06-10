@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { appAuth } from '../firebase/config';
 import useFetchSignUp from '../hooks/useFetchSignUp';
 
 const Container = styled.div`
@@ -11,6 +14,15 @@ export default function SignUpPage() {
   const {
     email, setEmail, password, setPassword, displayName, setDisplayName, SignUp,
   } = useFetchSignUp();
+
+  const { currentUser } = appAuth;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate('/');
+    }
+  }, [currentUser]);
 
   function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

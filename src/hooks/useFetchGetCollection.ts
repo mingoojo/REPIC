@@ -6,6 +6,7 @@ import { storeApiService } from '../apiServices/StoreApiService';
 import CollectionDocumentStore from '../store/CollectionDocumentStore';
 
 export default function useFetchGetCollection(transaction:string) {
+  // 정보받아오는 이벤트
   const Store = container.resolve(CollectionDocumentStore);
   const [{ CollectionDocument }] = useStore(Store);
 
