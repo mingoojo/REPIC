@@ -5,7 +5,7 @@ import { container } from 'tsyringe';
 import { appAuth, appFireStore, timeStamp } from '../firebase/config';
 import CollectionDocumentStore from '../store/CollectionDocumentStore';
 import UserDataStore from '../store/UserDataStore';
-import DocumentProps from '../type/types';
+import { CreatedTime, DocumentProps } from '../type/types';
 
 type addDocumentProps = {
   transaction: string
@@ -17,11 +17,19 @@ type unsubscribeCollectionProps = {
   transaction: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setError : (error : any) => void
+  paramsId? : string
 }
 
 type deleteDocumentProps = {
   id:string,
   transaction: string
+}
+
+type editDocumentProps={
+  transaction: string
+  title: string
+  text: string
+  createdTime : CreatedTime
 }
 
 export default class StoreApiService {
@@ -83,14 +91,20 @@ export default class StoreApiService {
   };
 
   // 글불러오기
-  unsubscribeCollection({ transaction, setError }: unsubscribeCollectionProps) {
+  unsubscribeCollection({ transaction, setError, paramsId }: unsubscribeCollectionProps) {
     onSnapshot(
       collection(appFireStore, transaction),
       (snapshot) => {
         const results:DocumentProps[] = [];
         snapshot.docs.forEach((docu) => {
           const result = { ...docu.data(), id: docu.id } as DocumentProps;
-          results.push(result);
+          if (paramsId) {
+            if (result.id === paramsId) {
+              results.push(result);
+            }
+          } else if (!paramsId) {
+            results.push(result);
+          }
         });
         this.collectionDocumentStore.CollectionDocumentUpdate(results);
         setError(null);

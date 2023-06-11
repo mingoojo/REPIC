@@ -20,7 +20,7 @@ export default function PrivatePage() {
     }
   }, [currentUser]);
 
-  const { CollectionDocument } = useFetchGetCollection(`Private__${transaction}`);
+  const { CollectionDocument } = useFetchGetCollection({ transaction: `Private__${transaction}` });
   return (
     <div>
       <Header />

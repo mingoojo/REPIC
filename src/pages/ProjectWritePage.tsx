@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import useFetchStore from '../hooks/useFetchStore';
 
-export default function ProjectsWritePage() {
+export default function ProjectWritePage() {
   const navigate = useNavigate();
   const {
     AddDocument, title, setTitle, text, setText,

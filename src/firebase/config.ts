@@ -25,7 +25,8 @@ const appAuth = getAuth();
 const appFireStore = getFirestore();
 const timeStamp = Timestamp;
 const appStorage = getStorage(app);
+const db = getFirestore(app);
 
 export {
-  appAuth, appFireStore, timeStamp, appStorage,
+  appAuth, appFireStore, timeStamp, appStorage, db,
 };

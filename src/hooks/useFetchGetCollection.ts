@@ -5,14 +5,22 @@ import { useStore } from 'usestore-ts';
 import { storeApiService } from '../apiServices/StoreApiService';
 import CollectionDocumentStore from '../store/CollectionDocumentStore';
 
-export default function useFetchGetCollection(transaction:string) {
+type useFetchGetCollectionProps = {
+  transaction : string,
+  paramsId? : string
+}
+
+export default function useFetchGetCollection({ transaction, paramsId }:
+  useFetchGetCollectionProps) {
   // 정보받아오는 이벤트
   const Store = container.resolve(CollectionDocumentStore);
   const [{ CollectionDocument }] = useStore(Store);
 
   const [error, setError] = useState(null);
 
-  useEffect(() => storeApiService.unsubscribeCollection({ transaction, setError }), [collection]);
+  useEffect(() => storeApiService.unsubscribeCollection(
+    { transaction, setError, paramsId },
+  ), [collection]);
   return {
     CollectionDocument,
     error,

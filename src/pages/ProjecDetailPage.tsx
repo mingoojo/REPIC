@@ -1,36 +1,31 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useFetchGetCollection from '../hooks/useFetchGetCollection';
+import getCreatedTime from '../utils/getCreatedTime';
 
 export default function ProjecDetailPage() {
+  const navigate = useNavigate();
   const params = useParams();
-  const { CollectionDocument } = useFetchGetCollection('projects');
-  const detailItems = CollectionDocument.find((document) => (
-    document.id === params.id
-  ));
-  const time = detailItems?.createdTime;
+  const { CollectionDocument } = useFetchGetCollection({ transaction: 'projects', paramsId: params.id });
+  const [collectionDocument] = CollectionDocument;
+  const { date, atTime } = getCreatedTime({ time: collectionDocument.createdTime });
 
-  if (time) {
-    const fireBaseTime = new Date(
-      time.seconds * 1000 + time.nanoseconds / 1000000,
-    );
-    console.log(fireBaseTime);
-    const date = fireBaseTime.toLocaleDateString('ko-KR');
-    const atTime = fireBaseTime.toLocaleTimeString();
-
-    console.log(date, atTime);
-  }
   return (
     <div>
       ProjecDetailPage
       <div>
-        {detailItems?.id}
+        {collectionDocument?.id}
       </div>
       <div>
-        {detailItems?.title}
+        {collectionDocument?.title}
       </div>
       <div>
-        {detailItems?.text}
+        {collectionDocument?.text}
       </div>
+      <div>
+        {date}
+        {atTime}
+      </div>
+      <button type="button" onClick={() => { navigate(`/projects/update/${collectionDocument.id}`); }}>글수정</button>
     </div>
   );
 }

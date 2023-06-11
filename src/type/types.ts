@@ -1,4 +1,4 @@
-type DocumentProps = {
+export type DocumentProps = {
   id : string
   text : string
   title : string
@@ -9,4 +9,7 @@ type DocumentProps = {
   }
 }
 
-export default DocumentProps;
+export type CreatedTime = {
+  seconds : number,
+  nanoseconds : number
+}

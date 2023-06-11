@@ -6,8 +6,9 @@ import PrivatePage from './pages/PrivatePage';
 import ProjecDetailPage from './pages/ProjecDetailPage';
 
 import ProjectListPage from './pages/ProjectListPage';
-import ProjectsWritePage from './pages/ProjectsWritePage';
+import ProjectUpdatePage from './pages/ProjectUpdatePage';
 import SignUpPage from './pages/SignUpPage';
+import ProjectWritePage from './pages/ProjectWritePage';
 
 const routes = [
   {
@@ -19,7 +20,8 @@ const routes = [
       { path: '/community', element: <CommunityPage /> },
       { path: '/projects', element: <ProjectListPage /> },
       { path: '/projects/:id', element: <ProjecDetailPage /> },
-      { path: '/projects/write', element: <ProjectsWritePage /> },
+      { path: '/projects/write', element: <ProjectWritePage /> },
+      { path: '/projects/update/:id', element: <ProjectUpdatePage /> },
       { path: '/private', element: <PrivatePage /> },
     ],
   },

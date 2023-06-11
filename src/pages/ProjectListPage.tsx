@@ -4,7 +4,7 @@ import ProjectsTable from '../components/projects/ProjectsTable';
 import useFetchGetCollection from '../hooks/useFetchGetCollection';
 
 export default function ProjectListPage() {
-  const { CollectionDocument } = useFetchGetCollection('projects');
+  const { CollectionDocument } = useFetchGetCollection({ transaction: 'projects' });
   return (
     <div>
       <Header />
