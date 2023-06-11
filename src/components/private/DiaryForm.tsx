@@ -6,7 +6,7 @@ export default function DiaryForm() {
 
   const {
     AddDocument, title, setTitle, text, setText,
-  } = useFetchStore(`Private__${transaction}`);
+  } = useFetchStore({ transaction: `Private__${transaction}` });
 
   function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();

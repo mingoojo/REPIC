@@ -25,13 +25,6 @@ type deleteDocumentProps = {
   transaction: string
 }
 
-type editDocumentProps={
-  transaction: string
-  title: string
-  text: string
-  createdTime : CreatedTime
-}
-
 export default class StoreApiService {
   userDataStore = container.resolve(UserDataStore);
 
@@ -42,6 +35,8 @@ export default class StoreApiService {
     transaction, title, text,
   }:addDocumentProps) {
     const uid = appAuth.currentUser?.uid || '';
+    const likes = [] as string[];
+    const comments = [] as Comment[];
     const colRef = collection(appFireStore, transaction);
     this.userDataStore.IsPendingUpdate(true);
     this.userDataStore.DocumentUpdate(null);
@@ -51,7 +46,7 @@ export default class StoreApiService {
     try {
       const createdTime = timeStamp.fromDate(new Date());
       const docRef = await addDoc(colRef, {
-        uid, title, text, createdTime,
+        uid, title, text, createdTime, likes, comments,
       });
       this.userDataStore.IsPendingUpdate(false);
       this.userDataStore.DocumentUpdate(docRef);

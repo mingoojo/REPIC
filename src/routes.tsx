@@ -9,6 +9,8 @@ import ProjectListPage from './pages/ProjectListPage';
 import ProjectUpdatePage from './pages/ProjectUpdatePage';
 import SignUpPage from './pages/SignUpPage';
 import ProjectWritePage from './pages/ProjectWritePage';
+import CommunityWritePage from './pages/CommunityWritePage';
+import CommunityDetailPage from './pages/CommunityDetailPage';
 
 const routes = [
   {
@@ -17,7 +19,9 @@ const routes = [
       { path: '/', element: <HomePage /> },
       { path: '/login', element: <LogInPage /> },
       { path: '/signup', element: <SignUpPage /> },
-      { path: '/community', element: <CommunityPage /> },
+      { path: '/communities', element: <CommunityPage /> },
+      { path: '/communities/write', element: <CommunityWritePage /> },
+      { path: '/communities/:id', element: <CommunityDetailPage /> },
       { path: '/projects', element: <ProjectListPage /> },
       { path: '/projects/:id', element: <ProjecDetailPage /> },
       { path: '/projects/write', element: <ProjectWritePage /> },

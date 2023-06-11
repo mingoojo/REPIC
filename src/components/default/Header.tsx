@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { appAuth } from '../../firebase/config';
 import useFetchLogOut from '../../hooks/useFetchLogout';
-import useWindowSizeCustom from '../../hooks/useWindowSizeCustom';
 
 const Container = styled.header`
 margin-block: 2rem;
@@ -44,7 +43,7 @@ export default function Header() {
                 <li>
                   <img className="headerLogo" src="/images/Logo.png" alt="test" />
                   <Link to="/">Home</Link>
-                  <Link to="/community">Community</Link>
+                  <Link to="/communities">Community</Link>
                   <Link to="/projects">Project</Link>
                   <Link to="/private">Private</Link>
                 </li>
@@ -57,7 +56,7 @@ export default function Header() {
                 <li>
                   <img className="headerLogo" src="/images/Logo.png" alt="test" />
                   <Link to="/">Home</Link>
-                  <Link to="/community">Community</Link>
+                  <Link to="/communities">Community</Link>
                   <Link to="/projects">Project</Link>
                 </li>
                 <li>

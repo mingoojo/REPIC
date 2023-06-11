@@ -14,6 +14,8 @@ export default class CollectionDocumentStore {
       seconds: 0,
       nanoseconds: 0,
     },
+    likes: [],
+    comments: [],
   }];
 
   @Action()

@@ -4,7 +4,7 @@ import { useStore } from 'usestore-ts';
 import { storeApiService } from '../apiServices/StoreApiService';
 import UserDataStore from '../store/UserDataStore';
 
-export default function useFetchStore(transaction:string) {
+export default function useFetchStore({ transaction }: {transaction:string}) {
   const userDataStore = container.resolve(UserDataStore);
   const [, store] = useStore(userDataStore);
 

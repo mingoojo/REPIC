@@ -5,7 +5,7 @@ export default function ProjectWritePage() {
   const navigate = useNavigate();
   const {
     AddDocument, title, setTitle, text, setText,
-  } = useFetchStore('projects');
+  } = useFetchStore({ transaction: 'projects' });
 
   function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
