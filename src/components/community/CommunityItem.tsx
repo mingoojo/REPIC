@@ -36,6 +36,7 @@ margin-block: 0.5rem;
 `;
 
 export default function CommunityItem({ document }:CommunityItemProps) {
+  console.log(document);
   return (
     <Container>
       <div>

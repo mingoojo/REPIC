@@ -2,7 +2,7 @@
 
 ## 작성자
 
-- 이름 : 조민구;
+- 이름 : 조민구
 - [Github](https://github.com/mingoojo)
 - [트러블 슈팅](https://swyks112s-organization.gitbook.io/mingoojo/)
 
@@ -35,3 +35,8 @@
     - [MSW](https://github.com/mswjs/msw)
 - [CodeceptJS](https://codecept.io/)
 - [FireBase](https://console.firebase.google.com/?hl=ko)
+
+
+## 트러블 슈팅
+1. firebase의 로딩시간과 랜더싱시간의 차이문제
+2. 데이터관리시, store의 공유로 인한 문제

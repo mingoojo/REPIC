@@ -1,13 +1,16 @@
 import { useParams } from 'react-router-dom';
+import CommunityDetailTable from '../components/communityDetail/CommunityDetailTable';
 import Header from '../components/default/Header';
+import useFetchGetCollection from '../hooks/useFetchGetCollection';
 
 export default function CommunityDetailPage() {
   const params = useParams();
-  console.log(params);
+  const { CollectionDocument } = useFetchGetCollection({ transaction: 'community', paramsId: params.id });
+  const [document] = CollectionDocument;
   return (
     <div>
       <Header />
-      CommunityDetailPage
+      <CommunityDetailTable document={document} />
     </div>
   );
 }

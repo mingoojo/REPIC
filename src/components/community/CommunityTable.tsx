@@ -30,7 +30,6 @@ a:visited {
 
 export default function CommunityTable() {
   const { CollectionDocument } = useFetchGetCollection({ transaction: 'community' });
-  console.log(CollectionDocument);
   return (
     <Container>
       <table>

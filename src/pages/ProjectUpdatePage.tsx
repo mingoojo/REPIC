@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffectOnce } from 'usehooks-ts';
-import useFetchEdit from '../hooks/useFetchEdit';
 import useFetchGetCollection from '../hooks/useFetchGetCollection';
 
 export default function ProjectUpdatePage() {
   const params = useParams();
   const { CollectionDocument } = useFetchGetCollection({ transaction: 'projects', paramsId: params.id });
   const [collectionDocument] = CollectionDocument;
-  const { fetchEdit } = useFetchEdit();
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
 
