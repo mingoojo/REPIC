@@ -27,7 +27,7 @@ export type Comment = {
   createdTime : CreatedTime
 }
 
-export type CommunityDocument = {
+export type CommunityItem = {
   comments : Comment[]
   createdTime : CreatedTime
   id : string
@@ -35,4 +35,5 @@ export type CommunityDocument = {
   text : string
   title : string
   uid: string
+  view : number
 }

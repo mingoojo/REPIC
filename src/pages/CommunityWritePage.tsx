@@ -1,7 +1,9 @@
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import Header from '../components/default/Header';
-import useFetchStore from '../hooks/useFetchStore';
+import useCommunityStore from '../hooks/useCommunityStore';
+import useFetchCommunityStore from '../hooks/useFetchCommunityStore';
 
 const Container = styled.div`
 margin-top: 3rem;
@@ -29,19 +31,23 @@ div{
 export default function CommunityWritePage() {
   const navigate = useNavigate();
   const {
-    AddDocument, title, setTitle, text, setText,
-  } = useFetchStore({ transaction: 'community' });
+    title, text, setTitle, setText, fetchAddDoc,
+  } = useFetchCommunityStore();
+  const [{ success }] = useCommunityStore();
 
-  function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    AddDocument();
-    navigate('/communities');
-  }
-
+    fetchAddDoc();
+  };
+  useEffect(() => {
+    if (success) {
+      navigate('/communities');
+    }
+  }, [success]);
   return (
-    <div>
+    <Container>
       <Header />
-      <Container>
+      <div>
         <form onSubmit={handleSubmit}>
           <fieldset>
             <legend>커뮤니티 작성</legend>
@@ -54,7 +60,7 @@ export default function CommunityWritePage() {
             <button type="submit">게시하기</button>
           </fieldset>
         </form>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 }

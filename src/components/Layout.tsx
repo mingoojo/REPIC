@@ -3,8 +3,9 @@ import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { container } from 'tsyringe';
 import { useStore } from 'usestore-ts';
-import useUnsubscribeFireStore from '../hooks/useUnsebscribeFireStore';
-// import useUnsebscribeFireBase from '../hooks/useUnsebscribeFireBase';
+import { appAuth } from '../firebase/config';
+import usefetchUnsubscribe from '../hooks/usefetchUnsubscribe';
+import useUserStore from '../hooks/useUserStore';
 import UserStore from '../store/UserStore';
 import Footer from './default/Footer';
 import Loading from './default/Loading';
@@ -15,29 +16,24 @@ margin: auto;
 `;
 
 export default function Layout() {
-  const Store = container.resolve(UserStore);
-  const [, store] = useStore(Store);
+  const { unsubscribe } = usefetchUnsubscribe();
+  const [{ isAuthReady }] = useUserStore();
+  const test = appAuth.currentUser;
 
-  const { unsubscribe } = useUnsubscribeFireStore();
+  useEffect(() => {
+    unsubscribe();
+  }, []);
 
-  useEffect(() => (
-    // 로딩상태 구독
-    unsubscribe()
-  ), []);
+  if (!isAuthReady) {
+    return (
+      <Loading />
+    );
+  }
 
   return (
     <Container>
-      {
-        store.isAuthReady ? (
-          <>
-            {/* <Header /> */}
-            <Outlet />
-            <Footer />
-          </>
-        ) : (
-          <Loading />
-        )
-      }
+      <Outlet />
+      <Footer />
     </Container>
   );
 }

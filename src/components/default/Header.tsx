@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { appAuth } from '../../firebase/config';
-import useFetchLogOut from '../../hooks/useFetchLogout';
+import useFetchUserStore from '../../hooks/useFetchUserStore';
+import useUserStore from '../../hooks/useUserStore';
 
 const Container = styled.header`
 margin-block: 2rem;
@@ -26,11 +27,12 @@ margin-block: 2rem;
 `;
 
 export default function Header() {
+  const { logout } = useFetchUserStore();
   const userInfo = appAuth.currentUser;
+  const userId = userInfo?.uid;
   const navigate = useNavigate();
-  const { LogOut } = useFetchLogOut();
   function handleLogout() {
-    LogOut();
+    logout();
     navigate('/login');
   }
   return (
@@ -45,7 +47,7 @@ export default function Header() {
                   <Link to="/">Home</Link>
                   <Link to="/communities">Community</Link>
                   <Link to="/projects">Project</Link>
-                  <Link to="/private">Private</Link>
+                  <Link to={`/private/${userId}`}>Private</Link>
                 </li>
                 <li>
                   <button type="button" onClick={handleLogout}>Log out</button>

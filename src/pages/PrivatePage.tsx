@@ -1,39 +1,31 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import Header from '../components/default/Header';
-import DiaryForm from '../components/private/DiaryForm';
-import DiaryList from '../components/private/DiaryList';
-import ImageUpLoad from '../components/private/ImageUpLoad';
-import { appAuth } from '../firebase/config';
-import useFetchGetCollection from '../hooks/useFetchGetCollection';
-import getTransAction from '../utils/getTransAction';
+import useFetchPrivateStore from '../hooks/useFetchPrivateStore';
+import usePrivateStore from '../hooks/usePrivateStore';
+
+const Container = styled.div`
+  
+`;
 
 export default function PrivatePage() {
-  const { transaction } = getTransAction();
-  const { currentUser } = appAuth;
-
-  const navigate = useNavigate();
-
+  const params = useParams();
+  const { fetchGet } = useFetchPrivateStore();
+  const [{ privateItem }] = usePrivateStore();
+  const myPrivateData = privateItem.filter((Item) => (
+    Item.uid === params.id
+  ));
+  console.log(myPrivateData);
   useEffect(() => {
-    if (!currentUser) {
-      navigate('/login');
-    }
-  }, [currentUser]);
-
-  const { CollectionDocument } = useFetchGetCollection({ transaction: `Private__${transaction}` });
+    fetchGet();
+  }, []);
   return (
-    <div>
+    <Container>
       <Header />
       <div>
-        PublicPage
-        <DiaryForm />
+        privatePage
       </div>
-      {
-        CollectionDocument.map((document) => (
-          <DiaryList key={document.id} document={document} transaction={transaction} />
-        ))
-      }
-      <ImageUpLoad />
-    </div>
+    </Container>
   );
 }

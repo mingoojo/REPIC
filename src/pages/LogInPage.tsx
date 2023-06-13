@@ -1,33 +1,39 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
+import Header from '../components/default/Header';
 import { appAuth } from '../firebase/config';
-import useFetchLogin from '../hooks/useFetchLogin';
+import useFetchUserStore from '../hooks/useFetchUserStore';
+import useUserStore from '../hooks/useUserStore';
 
 const Container = styled.div`
   
 `;
 
 export default function LogInPage() {
-  const {
-    email, setEmail, password, setPassword, Login,
-  } = useFetchLogin();
-
-  const { currentUser } = appAuth;
   const navigate = useNavigate();
+
+  const [{ user }] = useUserStore();
+  const { currentUser } = appAuth;
+
+  const {
+    email, setEmail, password, setPassword, login,
+  } = useFetchUserStore();
 
   useEffect(() => {
     if (currentUser) {
       navigate('/');
     }
-  }, [currentUser]);
+  }, [currentUser, user]);
 
-  function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    Login();
-  }
+    login();
+  };
+
   return (
     <Container>
+      <Header />
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Log In</legend>
