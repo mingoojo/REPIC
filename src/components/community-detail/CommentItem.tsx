@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import usePrivateStore from '../../hooks/usePrivateStore';
-import { Comment } from '../../type/types';
+import { Comment, nullPrivateData, PrivateData } from '../../type/types';
 import getCreatedTime from '../../utils/getCreatedTime';
 
 type CommentItemProps = {
@@ -19,17 +20,31 @@ border-radius: 2rem;
 
 export default function CommentItem({ comment }:CommentItemProps) {
   const { date } = getCreatedTime({ time: comment.createdTime });
+  const [userinfo, setUserinfo] = useState(nullPrivateData);
   const [{ privateItem }] = usePrivateStore();
-  const userinfo = privateItem.filter((privater) => (
-    privater.uid === comment.uid
-  ));
-  const [user] = userinfo;
+
+  useEffect(() => {
+    const userData = privateItem.filter((privater) => (
+      privater.uid === comment.uid
+    ));
+    const [Data] = userData;
+    if (!Data) {
+      setUserinfo(nullPrivateData);
+    } else if (Data) {
+      setUserinfo(Data);
+    }
+  }, [privateItem]);
+  console.log(userinfo);
+
+  if (!userinfo) {
+    return null;
+  }
 
   return (
     <Container>
       <div>
-        <Link to={`/private/${user.uid}`}>
-          {user.nickName}
+        <Link to={`/private/${userinfo.uid}`}>
+          {userinfo.nickName}
         </Link>
       </div>
       <div>

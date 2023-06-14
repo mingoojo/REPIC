@@ -58,3 +58,18 @@ export type PrivateData = {
   introduce : string,
   column: Column[]
 }
+
+export const nullPrivateData = {
+  id: '',
+  uid: '',
+  email: '',
+  nickName: '',
+  introduce: '',
+  column: [
+    {
+      title: '',
+      text: '',
+    },
+  ],
+
+};
