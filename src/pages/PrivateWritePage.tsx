@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/default/Header';
-import UserBody from '../components/private/UserBody';
+import UserWriteBody from '../components/private-write/UserWriteBody';
 import useFetchPrivateStore from '../hooks/useFetchPrivateStore';
 import usePrivateStore from '../hooks/usePrivateStore';
 
@@ -10,7 +10,7 @@ const Container = styled.div`
   
 `;
 
-export default function PrivatePage() {
+export default function PrivateWritePage() {
   const params = useParams();
   const { fetchGet } = useFetchPrivateStore();
   const [{ privateItem }] = usePrivateStore();
@@ -32,7 +32,7 @@ export default function PrivatePage() {
   return (
     <Container>
       <Header />
-      <UserBody myPrivateData={myPrivateData} />
+      <UserWriteBody myPrivateData={myPrivateData} />
     </Container>
   );
 }

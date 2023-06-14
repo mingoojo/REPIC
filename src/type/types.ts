@@ -23,7 +23,7 @@ export const defaultCommnets = {
 export type Comment = {
   uid : string
   text : string
-  likes : number
+  likes : string[]
   createdTime : CreatedTime
 }
 
@@ -36,4 +36,25 @@ export type CommunityItem = {
   title : string
   uid: string
   view : number
+}
+
+export type fetchUpdateCommunityProp<T> = {
+  tranaction:string,
+  docId:string,
+  updateKey:string,
+  updateValue:T
+}
+
+export type Column = {
+  title : string,
+  text : string
+}
+
+export type PrivateData = {
+  id : string
+  uid : string,
+  email : string,
+  nickName : string,
+  introduce : string,
+  column: Column[]
 }

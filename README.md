@@ -40,3 +40,4 @@
 ## 트러블 슈팅
 1. firebase의 로딩시간과 랜더싱시간의 차이문제
 2. 데이터관리시, store의 공유로 인한 문제
+3. header의 로그아웃이 usefetchuserstore에서 작동이 안되는 문제

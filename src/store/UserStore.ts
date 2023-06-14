@@ -71,10 +71,10 @@ export default class UserStore {
   // 로그아웃기능
   logout() {
     signOut(appAuth).then(() => {
-      // 로그아웃 성공!
       this.setError(false);
       this.setIsPending(false);
       this.setUser({} as User);
+      // 로그아웃 성공!
     });
   }
 

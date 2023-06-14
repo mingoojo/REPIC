@@ -2,35 +2,22 @@ import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
 import { appAuth, appFireStore } from '../firebase/config';
+import { Column, PrivateData } from '../type/types';
 
-const nullPrivate = {
-  id: '',
-  uid: '',
-  email: '',
-  nickName: '',
-  introduce: '',
-  column: [
-    {
-      title: '',
-      text: '',
-    },
-  ],
+// const nullPrivate = {
+//   id: '',
+//   uid: '',
+//   email: '',
+//   nickName: '',
+//   introduce: '',
+//   column: [
+//     {
+//       title: '',
+//       text: '',
+//     },
+//   ],
 
-};
-
-type Column = {
-  title : string,
-  text : string
-}
-
-type PrivateData = {
-  id : string
-  uid : string,
-  email : string,
-  nickName : string,
-  introduce : string,
-  column: Column[]
-}
+// };
 
 @singleton()
 @Store()

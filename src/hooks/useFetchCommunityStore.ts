@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { container } from 'tsyringe';
 import CommunityStore from '../store/CommunityStore';
+import { Comment, fetchUpdateCommunityProp } from '../type/types';
 
 export default function useFetchCommunityStore() {
   const store = container.resolve(CommunityStore);
@@ -15,7 +16,33 @@ export default function useFetchCommunityStore() {
   const fetchAddDoc = () => {
     store.addDocument({ title, text });
   };
+
+  // 글업데이트: 좋아요
+  const fetchUpdateCommunityLikes = ({
+    tranaction, docId, updateKey, updateValue,
+  }:fetchUpdateCommunityProp<string>) => {
+    store.fetchUpdateCommunityLikes({
+      tranaction, docId, updateKey, updateValue,
+    });
+  };
+
+  // 글업데이트: 댓글
+  const fetchUpdateCommunityComments = ({
+    tranaction, docId, updateKey, updateValue,
+  }:fetchUpdateCommunityProp<Comment>) => {
+    store.fetchUpdateCommunityCommnets({
+      tranaction, docId, updateKey, updateValue,
+    });
+  };
+
   return {
-    fetchGet, title, text, setTitle, setText, fetchAddDoc,
+    fetchGet,
+    title,
+    text,
+    setTitle,
+    setText,
+    fetchAddDoc,
+    fetchUpdateCommunityLikes,
+    fetchUpdateCommunityComments,
   };
 }

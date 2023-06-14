@@ -1,11 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { container } from 'tsyringe';
 import { appAuth } from '../../firebase/config';
-import useFetchUserStore from '../../hooks/useFetchUserStore';
-import useUserStore from '../../hooks/useUserStore';
+import UserStore from '../../store/UserStore';
 
 const Container = styled.header`
 margin-block: 2rem;
+border-bottom: 1px solid #222;
   ul{
     display: flex;
     justify-content: space-between;
@@ -18,6 +19,15 @@ margin-block: 2rem;
       a{
         margin-left: 1rem;
         display: inline-block;
+        text-decoration: none;
+        font-weight: bold;
+        color: #222;
+      }
+      a:hover{
+        text-decoration-line: underline;
+      }
+      button{
+        margin-left: 1.5rem;
       }
     }
   }
@@ -27,13 +37,13 @@ margin-block: 2rem;
 `;
 
 export default function Header() {
-  const { logout } = useFetchUserStore();
+  const store = container.resolve(UserStore);
   const userInfo = appAuth.currentUser;
   const userId = userInfo?.uid;
   const navigate = useNavigate();
   function handleLogout() {
-    logout();
     navigate('/login');
+    store.logout();
   }
   return (
     <Container>
@@ -44,26 +54,26 @@ export default function Header() {
               <>
                 <li>
                   <img className="headerLogo" src="/images/Logo.png" alt="test" />
-                  <Link to="/">Home</Link>
-                  <Link to="/communities">Community</Link>
-                  <Link to="/projects">Project</Link>
-                  <Link to={`/private/${userId}`}>Private</Link>
+                  <Link to="/">홈</Link>
+                  <Link to="/communities">커뮤니티</Link>
+                  <Link to="/projects">프로젝트</Link>
                 </li>
                 <li>
-                  <button type="button" onClick={handleLogout}>Log out</button>
+                  <Link to={`/private/${userId}`}>마이페이지</Link>
+                  <button type="button" onClick={handleLogout}>로그아웃</button>
                 </li>
               </>
             ) : (
               <>
                 <li>
                   <img className="headerLogo" src="/images/Logo.png" alt="test" />
-                  <Link to="/">Home</Link>
-                  <Link to="/communities">Community</Link>
-                  <Link to="/projects">Project</Link>
+                  <Link to="/">홈</Link>
+                  <Link to="/communities">커뮤니티</Link>
+                  <Link to="/projects">프로젝트</Link>
                 </li>
                 <li>
-                  <Link to="/signup">signup</Link>
-                  <Link to="/login">login</Link>
+                  <Link to="/signup">가입하기</Link>
+                  <Link to="/login">로그인</Link>
                 </li>
               </>
 

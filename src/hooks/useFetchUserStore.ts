@@ -15,7 +15,7 @@ export default function useFetchUserStore() {
   };
 
   // 로그아웃하기
-  const { logout } = store;
+  // store.logout();
 
   // 가입하기
   const signup = async () => {
@@ -23,6 +23,14 @@ export default function useFetchUserStore() {
   };
 
   return {
-    email, password, displayName, setEmail, setPassword, setDisplayName, logout, login, signup,
+    email,
+    password,
+    displayName,
+    setEmail,
+    setPassword,
+    setDisplayName,
+    logout: store.logout,
+    login,
+    signup,
   };
 }
