@@ -5,8 +5,6 @@ import UserIntroduce from './UserIntroduce';
 
 const Container = styled.div`
 width: 100%;
-/* display: flex; */
-/* justify-content: space-between; */
 `;
 
 type UserBodyProps = {

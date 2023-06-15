@@ -47,7 +47,8 @@ export type fetchUpdateCommunityProp<T> = {
 
 export type Column = {
   title : string,
-  text : string
+  text : string,
+  createdTime : CreatedTime
 }
 
 export type PrivateData = {

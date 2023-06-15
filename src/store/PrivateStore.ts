@@ -1,8 +1,10 @@
-import { addDoc, collection, onSnapshot } from 'firebase/firestore';
+import {
+  addDoc, arrayUnion, collection, doc, onSnapshot, updateDoc,
+} from 'firebase/firestore';
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
 import { appAuth, appFireStore } from '../firebase/config';
-import { Column, PrivateData } from '../type/types';
+import { Column, fetchUpdateCommunityProp, PrivateData } from '../type/types';
 
 // const nullPrivate = {
 //   id: '',
@@ -88,6 +90,28 @@ export default class PrivateStore {
         console.log('Done');
       });
 
+      this.setIsPending(false);
+      this.setSuccess(true);
+      this.setError(false);
+    } catch (err) {
+      this.setIsPending(false);
+      this.setSuccess(false);
+      this.setError(true);
+    }
+  }
+
+  // 작성글 업데이트
+  async fetchUpdatePrivateColumn({
+    tranaction, docId, updateKey, updateValue,
+  }:fetchUpdateCommunityProp<Column>) {
+    const Ref = doc(appFireStore, tranaction, docId);
+    this.setIsPending(true);
+    this.setSuccess(false);
+    this.setError(false);
+    try {
+      await updateDoc(Ref, {
+        [updateKey]: arrayUnion(updateValue),
+      });
       this.setIsPending(false);
       this.setSuccess(true);
       this.setError(false);

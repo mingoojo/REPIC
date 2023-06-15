@@ -1,12 +1,15 @@
-import Header from '../components/default/Header';
+import { styled } from 'styled-components';
+
+const Test = styled.div`
+height: 80vh;
+`;
 
 export default function HomePage() {
   return (
-    <div>
-      <Header />
+    <Test>
       <main>
         main Div
       </main>
-    </div>
+    </Test>
   );
 }

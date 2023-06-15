@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import useCommunityStore from '../hooks/useCommunityStore';
 import useFetchCommunityStore from '../hooks/useFetchCommunityStore';
 import CommnityDetailView from '../components/community-detail/CommnityDetailView';
-import Header from '../components/default/Header';
 
 export default function CommunityDetailPage() {
   const params = useParams();
@@ -20,13 +19,12 @@ export default function CommunityDetailPage() {
 
   if (!communityItem) {
     return (
-      <Header />
+      null
     );
   }
 
   return (
     <div>
-      <Header />
       <CommnityDetailView communityItem={communityItem} />
     </div>
   );

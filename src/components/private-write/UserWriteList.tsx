@@ -1,5 +1,8 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { timeStamp } from '../../firebase/config';
+import useFetchPrivateStore from '../../hooks/useFetchPrivateStore';
 import { PrivateData } from '../../type/types';
 
 type UserWriteListProps = {
@@ -33,19 +36,28 @@ div{
 
 export default function UserWriteList({ myPrivateData }:UserWriteListProps) {
   const navigate = useNavigate();
-  function handleSubmit() {
-    //
+  const {
+    title, setTitle, text, setText, fetchUpdatePrivateColumn,
+  } = useFetchPrivateStore();
+
+  function handelSubmit() {
+    fetchUpdatePrivateColumn({ docId: myPrivateData[0].id });
+    navigate(`/private/${myPrivateData[0].uid}`);
   }
   function handleClick() {
     navigate(`/private/${myPrivateData[0].uid}`);
   }
+
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handelSubmit}>
         <fieldset>
           <legend>글 작성</legend>
           <div>
-            <textarea required placeholder="내용을 입력해주세요" />
+            <input type="text" required value={title} onChange={(e) => { setTitle(e.target.value); }} placeholder="제목을 입력해주세요" />
+          </div>
+          <div>
+            <textarea required value={text} onChange={(e) => { setText(e.target.value); }} placeholder="내용을 입력해주세요" />
           </div>
           <div>
             <button type="submit">게시하기</button>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import Header from '../components/default/Header';
 import { appAuth } from '../firebase/config';
 import useFetchUserStore from '../hooks/useFetchUserStore';
 import useUserStore from '../hooks/useUserStore';
@@ -33,7 +32,6 @@ export default function LogInPage() {
 
   return (
     <Container>
-      <Header />
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Log In</legend>

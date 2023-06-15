@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../components/default/Header';
 import UserWriteBody from '../components/private-write/UserWriteBody';
 import useFetchPrivateStore from '../hooks/useFetchPrivateStore';
 import usePrivateStore from '../hooks/usePrivateStore';
 
 const Container = styled.div`
-  
+  min-height: 90vh;
+  padding: 0 1rem 0 1rem;
 `;
 
 export default function PrivateWritePage() {
@@ -23,15 +23,12 @@ export default function PrivateWritePage() {
 
   if (!myPrivateData.length) {
     return (
-      <Container>
-        <Header />
-      </Container>
+      null
     );
   }
 
   return (
     <Container>
-      <Header />
       <UserWriteBody myPrivateData={myPrivateData} />
     </Container>
   );

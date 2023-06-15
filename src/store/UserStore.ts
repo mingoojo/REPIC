@@ -2,9 +2,11 @@
 import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, User,
 } from 'firebase/auth';
+import { doc } from 'firebase/firestore';
 import { container, singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
-import { appAuth } from '../firebase/config';
+import { appAuth, appFireStore } from '../firebase/config';
+import { Column, fetchUpdateCommunityProp } from '../type/types';
 import PrivateStore from './PrivateStore';
 
 @singleton()

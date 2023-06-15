@@ -137,6 +137,7 @@ export default class CommunityStore {
     }
   }
 
+  // 댓글 자료 업데이트
   async fetchUpdateCommunityCommnets({
     tranaction, docId, updateKey, updateValue,
   }:fetchUpdateCommunityProp<Comment>) {

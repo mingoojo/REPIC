@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import Header from '../components/default/Header';
 import useCommunityStore from '../hooks/useCommunityStore';
 import useFetchCommunityStore from '../hooks/useFetchCommunityStore';
 
@@ -39,6 +38,7 @@ export default function CommunityWritePage() {
     e.preventDefault();
     fetchAddDoc();
   };
+
   useEffect(() => {
     if (success) {
       navigate('/communities');
@@ -46,7 +46,6 @@ export default function CommunityWritePage() {
   }, [success]);
   return (
     <Container>
-      <Header />
       <div>
         <form onSubmit={handleSubmit}>
           <fieldset>

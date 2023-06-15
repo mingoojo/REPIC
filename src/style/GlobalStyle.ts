@@ -17,6 +17,11 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-size: 1.6rem;
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 1px;
+    padding-top: 80px;
   }
 
   :lang(ko) {
