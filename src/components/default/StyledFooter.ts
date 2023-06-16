@@ -17,10 +17,18 @@ div{
       margin-block: 0.8rem;
       font-weight: 100;
       font-size: 1.2rem;
+      line-height: 1.4;
+      a{
+        text-decoration: none;
+        color : ${(props) => props.theme.colors.textMain};
+      }
     }
     h1{
       margin-bottom: 2rem;
       font-size: 2rem;
+      font-family: 'Noto Sans CJK KR';
+      font-style: normal;
+      font-weight: 500;
     }
   }
   .footerIntro{
@@ -37,6 +45,11 @@ div{
   .footerBox{
     display: block;
     padding: 3rem;
+    h1{
+          font-family: 'Noto Sans CJK KR';
+          font-style: normal;
+          font-weight: 500;
+        }
     .footerIntro{
       width: 100%;
       margin-bottom: 3rem;

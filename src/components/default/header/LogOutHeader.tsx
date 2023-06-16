@@ -8,9 +8,9 @@ export default function LogOutHeader() {
       <li>
         {
           isDarkMode ? (
-            <img className="headerLogo" src="/images/logoW.png" alt="test" />
+            <img className="headerLogo" src="/images/logoB_.png" alt="test" />
           ) : (
-            <img className="headerLogo" src="/images/logoB.png" alt="test" />
+            <img className="headerLogo" src="/images/logoW_.png" alt="test" />
           )
         }
         <Link to="/">홈</Link>

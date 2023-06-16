@@ -36,9 +36,9 @@ export default function HeaderSmall({ toggle, setToggle }:LogInHeaderSmallProps)
       <li>
         {
           isDarkMode ? (
-            <img className="headerLogo" src="/images/logoW.png" alt="Logo" />
-          ) : (
             <img className="headerLogo" src="/images/logoB.png" alt="Logo" />
+          ) : (
+            <img className="headerLogo" src="/images/logoW.png" alt="Logo" />
           )
         }
       </li>

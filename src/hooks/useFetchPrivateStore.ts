@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { container } from 'tsyringe';
 import { timeStamp } from '../firebase/config';
 import PrivateStore from '../store/PrivateStore';
-import { Column } from '../type/types';
 
 export default function useFetchPrivateStore() {
   const store = container.resolve(PrivateStore);
@@ -25,7 +24,18 @@ export default function useFetchPrivateStore() {
     });
   };
 
+  // 작성된 글 업데이트
+  const fetchUpdatePrivateUser = ({ docId, nickName, intro }:{
+    docId:string, nickName:string, intro:string}) => {
+    store.fetchUpdatePrivateUser({
+      tranaction: 'private', updateKey: 'nickName', docId, updateValue: nickName,
+    });
+    store.fetchUpdatePrivateUser({
+      tranaction: 'private', updateKey: 'introduce', docId, updateValue: intro,
+    });
+  };
+
   return {
-    fetchGet, title, setTitle, text, setText, fetchUpdatePrivateColumn,
+    fetchGet, title, setTitle, text, setText, fetchUpdatePrivateColumn, fetchUpdatePrivateUser,
   };
 }

@@ -32,6 +32,7 @@ export default function Layout() {
 
   return (
     <div>
+      {/* 일정페이지에서 헤더를 안보이게 하기 위한 조건식 */}
       {
         !headerCondition ? (
           <Header />

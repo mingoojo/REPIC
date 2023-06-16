@@ -4,7 +4,9 @@ import {
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
 import { appAuth, appFireStore } from '../firebase/config';
-import { Column, fetchUpdateCommunityProp, PrivateData } from '../type/types';
+import {
+  Column, fetchUpdateCommunityProp, PrivateData, UserUpdate,
+} from '../type/types';
 
 // const nullPrivate = {
 //   id: '',
@@ -104,6 +106,28 @@ export default class PrivateStore {
   async fetchUpdatePrivateColumn({
     tranaction, docId, updateKey, updateValue,
   }:fetchUpdateCommunityProp<Column>) {
+    const Ref = doc(appFireStore, tranaction, docId);
+    this.setIsPending(true);
+    this.setSuccess(false);
+    this.setError(false);
+    try {
+      await updateDoc(Ref, {
+        [updateKey]: arrayUnion(updateValue),
+      });
+      this.setIsPending(false);
+      this.setSuccess(true);
+      this.setError(false);
+    } catch (err) {
+      this.setIsPending(false);
+      this.setSuccess(false);
+      this.setError(true);
+    }
+  }
+
+  // 유저인포 업데이트
+  async fetchUpdatePrivateUser({
+    tranaction, docId, updateKey, updateValue,
+  }:fetchUpdateCommunityProp<string>) {
     const Ref = doc(appFireStore, tranaction, docId);
     this.setIsPending(true);
     this.setSuccess(false);

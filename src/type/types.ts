@@ -51,6 +51,11 @@ export type Column = {
   createdTime : CreatedTime
 }
 
+export type UserUpdate = {
+  nickName: string,
+  intro: string
+}
+
 export type PrivateData = {
   id : string
   uid : string,

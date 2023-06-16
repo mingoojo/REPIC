@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 const ContainerHeader = styled.header`
-border-bottom: 1px solid #222;
+border-bottom: 1px solid ${(props) => props.theme.colors.textMain};;
 background-color: ${(props) => props.theme.colors.backgroundMain};
 padding: 1.5rem 5rem 1.5rem 5rem;
 font-family: 'Noto Sans CJK KR';
@@ -31,6 +31,7 @@ nav{
         text-decoration-line: underline;
       }
       button{
+        cursor: pointer;
         margin-left: 1.5rem;
         padding: 0.5rem;
         color: ${(props) => props.theme.colors.textMain};
@@ -46,6 +47,9 @@ nav{
   .headerSide{
     font-family: 'Noto Sans CJK KR';
     font-weight: normal;
+    a{
+      letter-spacing: -0.5px;
+    }
   }
 }
   .menuBar{
@@ -63,6 +67,7 @@ nav{
       padding-right: 0.5rem;
       align-items: center;
       button{
+        cursor: pointer;
         -webkit-user-select:none;
         -moz-user-select:none;
         -ms-user-select:none;
@@ -86,6 +91,10 @@ nav{
         }
       }
     }
+  }
+  .logout:hover{
+    background-color: ${(props) => props.theme.colors.textMain};
+    color: ${(props) => props.theme.colors.backgroundMain};
   }
 `;
 export default ContainerHeader;
