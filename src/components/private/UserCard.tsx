@@ -23,7 +23,7 @@ export default function UserCard({ myPrivateData, radioToggle, setRadioToggle }:
     <ContainerUserCard>
       <aside>
         <h1>
-          {myPrivateData[0].nickName}
+          {myPrivateData[0].nickName[myPrivateData[0].nickName.length - 1]}
         </h1>
         <div className="Thumbnail">
           <img src="" alt="" />

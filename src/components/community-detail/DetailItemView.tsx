@@ -70,6 +70,10 @@ export default function DetailItemView({ communityItem }:DetailItemViewProps) {
           {communityItem.likes.length}
           개
         </div>
+        <div>
+          {'방문자수 : '}
+          {communityItem.view.length}
+        </div>
       </div>
       <div className="body">
         {communityItem.text}

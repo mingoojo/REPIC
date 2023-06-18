@@ -21,11 +21,22 @@ export default function LogInHeader({ userId }: {userId:string|undefined}) {
           )
         }
         <Link to="/">홈</Link>
-        <Link to="/communities">커뮤니티</Link>
+        <Link to="/communities?page=1">커뮤니티</Link>
         <Link to="/projects">프로젝트</Link>
       </li>
       <li className="headerSide">
-        <Link to={`/private/${userId}`}>마이페이지</Link>
+        <Link to={`/private/${userId}`}>
+          {
+            isDarkMode ? (
+              <img src="/images/icons/setting02.png" alt="seticon" />
+            ) : (
+              <img src="/images/icons/setting04.png" alt="seticon" />
+            )
+          }
+          <p>
+            정보수정
+          </p>
+        </Link>
         <button className="logout" type="button" onClick={handleLogout}>로그아웃</button>
       </li>
     </>

@@ -1,36 +1,95 @@
-import { Radio } from './CommunityTable';
+import React from 'react';
+import styled from 'styled-components';
+import { Radio } from '../../pages/CommunityPage';
+
+// type ChangeFunction = () => void
 
 type TableHeaderProps = {
   check : Radio
   setCheck : (check : Radio) => void
+  searchText : string
+  setSearchText : (searchText:string) =>void
+  searchConfirm: () => void
 }
 
-export default function TableHeader({ check, setCheck }:TableHeaderProps) {
+const Header = styled.header`
+padding-block: 2rem;
+border-bottom: 1px solid ${(props) => props.theme.colors.textMain};
+display: flex;
+align-items: center;
+
+input[type='radio']{
+  display: none;
+}
+label{
+  padding: 1rem;
+  border-radius: 1rem;
+}
+input[type='radio']:checked + label{
+  background-color: ${(props) => props.theme.colors.buttonMain};
+  color: ${(props) => props.theme.colors.primaryDeep}
+}
+.searchField{
+  input{
+    width: 300px;
+    height: 40px;
+    padding: 1rem;
+    border: 2px solid ${(props) => props.theme.colors.buttonMain};
+    border-radius: 0.3rem;
+    background-color: ${(props) => props.theme.colors.backgroundMain};
+    color: ${(props) => props.theme.colors.textMain};
+  }
+  button{
+    position: absolute;
+    transform: translateX(-100%);
+    height: 40px;
+    padding: 1rem 2rem 1rem 2rem;
+    background-color: ${(props) => props.theme.colors.buttonMain};
+    color: ${(props) => props.theme.colors.textMain};
+    border: none;
+  }
+}
+`;
+
+export default function TableHeader({
+  check, setCheck, searchText, setSearchText, searchConfirm,
+}:TableHeaderProps) {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
+
+  // 엔터키 활성화 메서드
+  const handleKey = (e:React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      searchConfirm();
+    }
+  };
   return (
-    <header>
+    <Header>
       <table>
         <thead>
           <tr>
             <th>
-              <label>
-                <input type="radio" checked={check === 'Recent'} onChange={() => { setCheck('Recent'); }} name="Sorting" />
+              <input type="radio" id="RecentBox" checked={check === 'Recent'} onChange={() => { setCheck('Recent'); }} name="Sorting" />
+              <label htmlFor="RecentBox">
                 최신순
               </label>
-              <label>
-                <input type="radio" checked={check === 'View'} onChange={() => { setCheck('View'); }} name="Sorting" />
+              <input type="radio" id="ViewBox" checked={check === 'View'} onChange={() => { setCheck('View'); }} name="Sorting" />
+              <label htmlFor="ViewBox">
                 조회순
               </label>
-              <label>
-                <input type="radio" checked={check === 'Likes'} onChange={() => { setCheck('Likes'); }} name="Sorting" />
+              <input type="radio" id="LikesBox" checked={check === 'Likes'} onChange={() => { setCheck('Likes'); }} name="Sorting" />
+              <label htmlFor="LikesBox">
                 좋아요순
               </label>
             </th>
           </tr>
         </thead>
       </table>
-      <div>
-        <input type="text" placeholder="검색하세요" />
+      <div className="searchField">
+        <input type="text" value={searchText} onKeyUp={handleKey} onChange={handleChange} placeholder="검색하세요" />
+        <button type="button" onClick={searchConfirm}>검색</button>
       </div>
-    </header>
+    </Header>
   );
 }

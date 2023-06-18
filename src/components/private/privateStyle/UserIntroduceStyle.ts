@@ -4,6 +4,7 @@ const ArticleUserInt = styled.article`
 width: 62%;
 float: right;
 padding-block: 1rem;
+
 h2{
   font-size: 1.5rem;
   font-weight: normal;
@@ -30,6 +31,7 @@ label{
   color: ${(props) => props.theme.colors.textSecond};
   font-weight: 300;
   font-size: 1.4rem;
+  z-index: -1;
 }
 .buttonField{
   text-align: center;
@@ -45,6 +47,7 @@ div[class='buttonBox']{
   text-align: center;
   margin-top: 2rem;
   button{
+    cursor: pointer;
     width: 95%;
     height: 40px;
     border: none;

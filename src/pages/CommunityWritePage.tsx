@@ -41,7 +41,7 @@ export default function CommunityWritePage() {
 
   useEffect(() => {
     if (success) {
-      navigate('/communities');
+      navigate('/communities?page=1');
     }
   }, [success]);
   return (

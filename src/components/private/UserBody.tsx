@@ -5,10 +5,14 @@ import { PrivateData } from '../../type/types';
 import UserCard from './UserCard';
 import UserIntroduce from './UserIntroduce';
 import { appAuth } from '../../firebase/config';
+import UserActivity from './UserActivity';
 
 const Container = styled.div`
 width: 100%;
 min-height: 90vh;
+@media (max-width: 720px) {
+  margin-bottom: 5rem;
+}
 `;
 
 type UserBodyProps = {
@@ -39,7 +43,7 @@ export default function UserBody({ myPrivateData }:UserBodyProps) {
         radioToggle === 'info' && <UserIntroduce myPrivateData={myPrivateData} />
       }
       {
-        radioToggle === 'write' && <UserIntroduce myPrivateData={myPrivateData} />
+        radioToggle === 'write' && <UserActivity />
       }
     </Container>
   );

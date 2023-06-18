@@ -3,10 +3,10 @@ import { styled } from 'styled-components';
 const ContainerUserCard = styled.div`
 display: inline-block;
 width: 35%;
-min-height: 90vh;
+min-height: 100vh;
 border-right: 1px solid ${(props) => props.theme.colors.textMain};
 font-weight: 100;
-letter-spacing: 1.3px;
+letter-spacing: 1.3px;;
 aside{
   display: inline-block;
   width: 100%;

@@ -23,34 +23,46 @@ export default function ModalSmall({ setToggle, toggle }:ModalSmallProps) {
       </div>
       <div className="ItemBar">
         <ul>
-          <li>
-            <Link to="/">홈</Link>
-          </li>
-          <li>
-            <Link to="/communities">커뮤니티</Link>
-          </li>
-          <li>
-            <Link to="/projects">프로젝트</Link>
-          </li>
+          <Link to="/" onClick={() => { setToggle(!toggle); }}>
+            <li>
+              홈
+            </li>
+          </Link>
+          <Link to="/communities?page=1" onClick={() => { setToggle(!toggle); }}>
+            <li>
+              커뮤니티
+            </li>
+          </Link>
+          <Link to="/projects" onClick={() => { setToggle(!toggle); }}>
+            <li>
+              프로젝트
+            </li>
+          </Link>
           {
             userInfo ? (
               <>
-                <li className="headerSide">
-                  <Link to={`/private/${userId}`}>마이페이지</Link>
-                </li>
-                <li>
+                <Link to={`/private/${userId}`} onClick={() => { setToggle(!toggle); }}>
+                  <li className="headerSide">
+                    마이페이지
+                  </li>
+                </Link>
+                <div>
                   <button className="logout" type="button" onClick={handleLogout}>로그아웃</button>
-                </li>
+                </div>
               </>
 
             ) : (
               <>
-                <li>
-                  <Link to="/signup">가입하기</Link>
-                </li>
-                <li>
-                  <Link to="/login">로그인</Link>
-                </li>
+                <Link to="/signup" onClick={() => { setToggle(!toggle); }}>
+                  <li>
+                    가입하기
+                  </li>
+                </Link>
+                <Link to="/login" onClick={() => { setToggle(!toggle); }}>
+                  <li>
+                    로그인
+                  </li>
+                </Link>
               </>
             )
           }

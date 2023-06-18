@@ -9,16 +9,24 @@ type UserIntroduceProps = {
 
 export default function UserIntroduce({ myPrivateData }:UserIntroduceProps) {
   const [MyPrivateData] = myPrivateData;
-  const introduced = MyPrivateData.introduce[MyPrivateData.introduce.length - 1];
-  const [nickName, setNickName] = useState(MyPrivateData.nickName);
-  const [intro, setIntro] = useState(introduced);
+  const [nickName, setNickName] = useState(
+    MyPrivateData.nickName[MyPrivateData.nickName.length - 1],
+  );
+  const [intro, setIntro] = useState(MyPrivateData.introduce[MyPrivateData.introduce.length - 1]);
 
   const { fetchUpdatePrivateUser } = useFetchPrivateStore();
   const handleClick = () => {
     fetchUpdatePrivateUser({ nickName, intro, docId: MyPrivateData.id });
+    alert('변경완료');
   };
   return (
     <ArticleUserInt>
+      <div>
+        <h2>
+          사진변경
+        </h2>
+        <input type="file" id="photo" />
+      </div>
       <div>
         <h2>
           닉네임변경

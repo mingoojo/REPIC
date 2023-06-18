@@ -3,15 +3,15 @@ import {
 } from 'firebase/firestore';
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
-import { appAuth, appFireStore, timeStamp } from '../firebase/config';
+import {
+  appAuth, appFireStore, db, timeStamp,
+} from '../firebase/config';
 import { Comment, CommunityItem, fetchUpdateCommunityProp } from '../type/types';
 
 @singleton()
 @Store()
 export default class CommunityStore {
   communityItems:CommunityItem[] = [];
-
-  SelectedcommunityItem:CommunityItem[] = [];
 
   error = false;
 
@@ -22,11 +22,6 @@ export default class CommunityStore {
   @Action()
   setCommunityItem(payload:CommunityItem[]) {
     this.communityItems = payload;
-  }
-
-  @Action()
-  setSelectedcommunityItem(payload:CommunityItem[]) {
-    this.SelectedcommunityItem = payload;
   }
 
   @Action()
@@ -66,27 +61,16 @@ export default class CommunityStore {
   }
 
   // 커뮤니티 자료 불러오기
-  fetchGetCommunity = (id? :string) => {
+  fetchGetCommunity = () => {
     onSnapshot(
       collection(appFireStore, 'community'),
       (snapshot) => {
         const CommunityItems:CommunityItem[] = [];
-
-        const communityItem:CommunityItem[] = [];
         snapshot.docs.forEach((docu) => {
-          if (id) {
-            const result = { ...docu.data(), id: docu.id } as CommunityItem;
-            CommunityItems.push(result);
-            if (id === result.id) {
-              communityItem.push(result);
-            }
-          } else {
-            const result = { ...docu.data(), id: docu.id } as CommunityItem;
-            CommunityItems.push(result);
-          }
+          const result = { ...docu.data(), id: docu.id } as CommunityItem;
+          CommunityItems.push(result);
         });
         this.setCommunityItem(CommunityItems);
-        this.setSelectedcommunityItem(communityItem);
         this.setError(false);
       },
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -99,6 +83,7 @@ export default class CommunityStore {
     const uid = appAuth.currentUser?.uid || '';
     const likes = [] as string[];
     const comments = [] as Comment[];
+    const view = [0];
     const colRef = collection(appFireStore, 'community');
     this.DefaultSet();
 
@@ -109,10 +94,10 @@ export default class CommunityStore {
         alert('로그인하세요');
       } else {
         await addDoc(colRef, {
-          uid, title, text, createdTime, likes, comments,
+          uid, title, text, createdTime, likes, comments, view,
         }).then(() => {
           // eslint-disable-next-line no-console
-          console.log('hihi');
+          console.log('생성완료');
         });
         this.DoneSet();
       }
@@ -149,6 +134,22 @@ export default class CommunityStore {
       });
       this.DoneSet();
     } catch (err) {
+      this.ErrorSet();
+    }
+  }
+
+  // 방문자수 업데이트
+  async fetchUpdateCommunityViews({
+    tranaction, docId, updateKey, updateValue,
+  } :fetchUpdateCommunityProp<number>) {
+    const Ref = doc(db, tranaction, docId);
+    this.DefaultSet();
+    try {
+      await updateDoc(Ref, {
+        [updateKey]: arrayUnion(updateValue),
+      });
+      this.DoneSet();
+    } catch (error) {
       this.ErrorSet();
     }
   }

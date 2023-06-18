@@ -10,12 +10,14 @@ export default function CommunityDetailPage() {
   const { fetchGet } = useFetchCommunityStore();
 
   useEffect(() => {
-    fetchGet(params.id);
+    fetchGet();
   }, []);
 
-  const [{ SelectedcommunityItem }] = useCommunityStore();
+  const [{ communityItems }] = useCommunityStore();
 
-  const [communityItem] = SelectedcommunityItem;
+  const [communityItem] = communityItems.filter((item) => (
+    item.id === params.id
+  ));
 
   if (!communityItem) {
     return (

@@ -12,10 +12,28 @@ type CommentItemProps = {
 const Container = styled.div`
 font-size: 2rem;
 margin-top: 1rem;
-border: 1px solid #222;
-height: 10rem;
+border-top: 1px solid ${(props) => props.theme.colors.textMain};
 padding: 1rem;
-border-radius: 2rem;
+
+div{
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  ul{
+    font-size: 1.5rem;
+  }
+  p{
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+  }
+  a{
+  text-decoration: none;
+  color: ${(props) => props.theme.colors.textSecond};
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 2rem;
+}
+}
 `;
 
 export default function CommentItem({ comment }:CommentItemProps) {
@@ -34,7 +52,6 @@ export default function CommentItem({ comment }:CommentItemProps) {
       setUserinfo(Data);
     }
   }, [privateItem]);
-  console.log(userinfo);
 
   if (!userinfo) {
     return null;
@@ -44,14 +61,16 @@ export default function CommentItem({ comment }:CommentItemProps) {
     <Container>
       <div>
         <Link to={`/private/${userinfo.uid}`}>
-          {userinfo.nickName}
+          {userinfo.nickName[userinfo.nickName.length - 1]}
         </Link>
+        <ul>
+          {date}
+        </ul>
       </div>
       <div>
-        {comment.text}
-      </div>
-      <div>
-        {date}
+        <p>
+          {comment.text}
+        </p>
       </div>
     </Container>
   );

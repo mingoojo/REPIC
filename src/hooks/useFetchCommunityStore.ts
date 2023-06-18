@@ -35,6 +35,15 @@ export default function useFetchCommunityStore() {
     });
   };
 
+  // 글업데이트: 방문자수
+  const fetchUpdateCommunityViews = ({
+    tranaction, docId, updateKey, updateValue,
+  }:fetchUpdateCommunityProp<number>) => {
+    store.fetchUpdateCommunityViews({
+      tranaction, docId, updateKey, updateValue,
+    });
+  };
+
   return {
     fetchGet,
     title,
@@ -44,5 +53,6 @@ export default function useFetchCommunityStore() {
     fetchAddDoc,
     fetchUpdateCommunityLikes,
     fetchUpdateCommunityComments,
+    fetchUpdateCommunityViews,
   };
 }

@@ -35,7 +35,7 @@ export type CommunityItem = {
   text : string
   title : string
   uid: string
-  view : number
+  view : number[]
 }
 
 export type fetchUpdateCommunityProp<T> = {

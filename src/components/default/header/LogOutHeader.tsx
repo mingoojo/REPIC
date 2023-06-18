@@ -14,7 +14,7 @@ export default function LogOutHeader() {
           )
         }
         <Link to="/">홈</Link>
-        <Link to="/communities">커뮤니티</Link>
+        <Link to="/communities?page=1">커뮤니티</Link>
         <Link to="/projects">프로젝트</Link>
       </li>
       <li className="headerSide">

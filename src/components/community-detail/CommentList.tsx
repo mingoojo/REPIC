@@ -9,6 +9,7 @@ type CommentListProps = {
 }
 
 const Container = styled.div`
+margin-block: 3rem;
 `;
 
 export default function CommentList({ comments }:CommentListProps) {

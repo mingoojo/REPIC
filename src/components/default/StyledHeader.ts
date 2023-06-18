@@ -11,6 +11,7 @@ position: fixed;
 top: 0;
 left: 0;
 right: 0;
+font-size: 1.4rem;
 nav{
   ul{
     display: flex;
@@ -24,6 +25,7 @@ nav{
       a{
         margin-left: 3rem;
         display: inline-block;
+        white-space: nowrap;
         text-decoration: none;
         color: ${(props) => props.theme.colors.textMain};
       }
@@ -48,7 +50,13 @@ nav{
     font-family: 'Noto Sans CJK KR';
     font-weight: normal;
     a{
+      align-items: center;
       letter-spacing: -0.5px;
+      display: flex;
+      img{
+        height: 20px;
+        margin-right: 1rem;
+      }
     }
   }
 }
@@ -56,7 +64,7 @@ nav{
     position: absolute;
     width: 100%;
     height: 100vh;
-    z-index: 10;
+    z-index: 1;
     background-color: ${(props) => props.theme.colors.backgroundMain};
     left: 0;
     top: 0;
@@ -84,13 +92,29 @@ nav{
         text-align: center;
         li{
           padding-block: 2rem;
-          a{
+        }
+        a{
             text-decoration: none;
-            color: ${(props) => props.theme.colors.textMain}
+            color: ${(props) => props.theme.colors.textMain};
+
           }
+        div{
+          padding-block: 2rem;
+        }
+        li:hover{
+          background-color: ${(props) => props.theme.colors.primary};
+          color:white;
         }
       }
     }
+  }
+  .logout{
+    padding: 1rem;
+    font-weight: bold;
+    background-color: ${(props) => props.theme.colors.backgroundMain};
+    border: 1px solid ${(props) => props.theme.colors.textMain};
+    color: ${(props) => props.theme.colors.textMain};
+    border-radius: .4rem;
   }
   .logout:hover{
     background-color: ${(props) => props.theme.colors.textMain};
