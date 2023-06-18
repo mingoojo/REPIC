@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import { useDarkMode } from 'usehooks-ts';
 import usePrivateStore from '../../hooks/usePrivateStore';
 import { CommunityItem } from '../../type/types';
 import getCreatedTime from '../../utils/getCreatedTime';
@@ -59,13 +60,39 @@ const Container = styled.div`
     display: block;
     margin-block: 0.5rem;
     line-height: 1.4;
-    width: 70%;
+    width: 100%;
+  }
+  .like{
+    display: flex;
+    img{
+      margin-right: 0.5rem;
+      height: 15px;
+    }
+  }
+  .view{
+    display: flex;
+    img{
+      margin-right: 0.5rem;
+      height: 15px;
+    }
+  }
+  .comments{
+    display: flex;
+    img{
+      margin-right: 0.5rem;
+      height: 15px;
+    }
+  }
+  .iconbox{
+    margin-right: 1rem;
+    width: 130px;
   }
 `;
 
 export default function ItemBox({ communityItem }:ItmeBoxProps) {
   const { date, atTime } = getCreatedTime({ time: communityItem.createdTime });
   const [{ privateItem }, store] = usePrivateStore();
+  const { isDarkMode } = useDarkMode();
   useEffect(() => {
     store.fetchGetPrivate();
   }, [store]);
@@ -88,20 +115,40 @@ export default function ItemBox({ communityItem }:ItmeBoxProps) {
       <div className="communityTitle">
         <h1>{communityItem.title}</h1>
       </div>
-      <div>
+      <div className="textLine">
         <p className="textBox">{communityItem.text}</p>
-        <p>
-          {'likes : '}
-          {communityItem.likes.length}
-        </p>
-        <p>
-          {'view : '}
-          {communityItem.view.length}
-        </p>
-        <p>
-          {'comments : '}
-          {communityItem.comments.length}
-        </p>
+        <div className="iconbox">
+          <p className="like">
+            {
+              isDarkMode ? (
+                <img src="/images/icons/like01.png" alt="" />
+              ) : (
+                <img src="/images/icons/like03.png" alt="" />
+              )
+            }
+            {communityItem.likes.length}
+          </p>
+          <p className="view">
+            {
+              isDarkMode ? (
+                <img src="/images/icons/more01.png" alt="" />
+              ) : (
+                <img src="/images/icons/more03.png" alt="" />
+              )
+            }
+            {communityItem.view.length}
+          </p>
+          <p className="comments">
+            {
+              isDarkMode ? (
+                <img src="/images/icons/user02.png" alt="" />
+              ) : (
+                <img src="/images/icons/user04.png" alt="" />
+              )
+            }
+            {communityItem.comments.length}
+          </p>
+        </div>
       </div>
     </Container>
   );

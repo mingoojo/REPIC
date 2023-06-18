@@ -18,6 +18,10 @@ border-bottom: 1px solid ${(props) => props.theme.colors.textMain};
 display: flex;
 align-items: center;
 
+table{
+  padding-block: 1.2rem;
+}
+
 input[type='radio']{
   display: none;
 }
@@ -30,6 +34,8 @@ input[type='radio']:checked + label{
   color: ${(props) => props.theme.colors.primaryDeep}
 }
 .searchField{
+  display: flex;
+  justify-content: end;
   input{
     width: 300px;
     height: 40px;
@@ -40,13 +46,34 @@ input[type='radio']:checked + label{
     color: ${(props) => props.theme.colors.textMain};
   }
   button{
-    position: absolute;
-    transform: translateX(-100%);
     height: 40px;
     padding: 1rem 2rem 1rem 2rem;
+    white-space: nowrap;
     background-color: ${(props) => props.theme.colors.buttonMain};
     color: ${(props) => props.theme.colors.textMain};
     border: none;
+  }
+}
+@media (max-width: 720px){
+  flex-direction: column;
+
+  table{
+    width: 100%;
+    padding-block: 1.2rem;
+    th{
+      display: flex;
+    }
+    margin-block: 1rem;
+  }
+  .searchField{
+    width: 100%;
+    display: flex;
+    input{
+      width: 100%;
+    }
+    button{
+
+    }
   }
 }
 `;

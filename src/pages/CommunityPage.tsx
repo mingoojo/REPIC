@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 import CommunityTable from '../components/community/CommunityTable';
 import useFetchCommunityStore from '../hooks/useFetchCommunityStore';
-import FooterField from '../components/community/FooterField';
 import useCommunityStore from '../hooks/useCommunityStore';
 import useForceUpdate from '../hooks/useForceUpdate';
+import Banner from '../components/community/Banner';
 
-const Container = styled.div``;
+const Container = styled.div`
+
+`;
 
 export type Radio = 'Recent' | 'View' | 'Likes'
 
@@ -45,6 +47,7 @@ export default function CommnuityPage() {
 
   return (
     <Container>
+      <Banner />
       <CommunityTable
         communityItems={communityItems}
         setCheck={setCheck}

@@ -64,7 +64,7 @@ nav{
     position: absolute;
     width: 100%;
     height: 100vh;
-    z-index: 1;
+    z-index: 2;
     background-color: ${(props) => props.theme.colors.backgroundMain};
     left: 0;
     top: 0;
