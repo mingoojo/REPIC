@@ -1,7 +1,8 @@
-import { useDarkMode } from 'usehooks-ts';
+import { useDarkMode, useEffectOnce } from 'usehooks-ts';
 import { appAuth } from '../../firebase/config';
 import { PrivateData } from '../../type/types';
 import ContainerUserCard from './privateStyle/UserCardStyle';
+import useFetchThumbStorage from '../../hooks/useFetchThumbStorage';
 
 type UserCardProps = {
   myPrivateData : PrivateData[]
@@ -12,12 +13,17 @@ type UserCardProps = {
 export default function UserCard({ myPrivateData, radioToggle, setRadioToggle }:UserCardProps) {
   const { currentUser } = appAuth;
   const { isDarkMode } = useDarkMode();
+  const { Url, ThumbsDownload } = useFetchThumbStorage();
 
   if (currentUser === null) {
     return (
       null
     );
   }
+
+  useEffectOnce(() => {
+    ThumbsDownload({ userInfo: myPrivateData[0].uid });
+  });
 
   return (
     <ContainerUserCard>
@@ -26,10 +32,15 @@ export default function UserCard({ myPrivateData, radioToggle, setRadioToggle }:
           {myPrivateData[0].nickName[myPrivateData[0].nickName.length - 1]}
         </h1>
         <div className="Thumbnail">
-          <img src="" alt="" />
+          <img src={`${Url}`} alt="thumbNail" className="ThumbnailImg" />
         </div>
         <div>
           {myPrivateData[0].email}
+        </div>
+        <div className="stackBox">
+          {myPrivateData[0].stacks.map((stack) => (
+            <div className="stack" key={stack} style={{ backgroundImage: `url(/images/library/resized/${stack}.png)` }} />
+          ))}
         </div>
       </aside>
       {

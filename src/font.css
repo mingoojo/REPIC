@@ -37,21 +37,21 @@
 
 @font-face {
   font-family: 'GmarketSansMedium';
-  src: url('style/fonts/GmarketSansMedium.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  src: url('style/fonts/GmarketSansMedium.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'GmarketSansLight';
-  src: url('style/fonts/GmarketSansLight.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  src: url('style/fonts/GmarketSansLight.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'GmarketSansBold';
-  src: url('style/fonts/GmarketSansBold.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  src: url('style/fonts/GmarketSansBold.otf') format('truetype');
 }

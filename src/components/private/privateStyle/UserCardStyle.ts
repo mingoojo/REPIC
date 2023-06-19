@@ -14,18 +14,43 @@ aside{
   height: 400px;
   text-align: center;
   padding: 1rem;
-  h1{
-  font-size: 3rem;
-  font-weight: normal;
-}
-.Thumbnail{
-  display: inline-block;
-  width: 100px;
-  margin-block: 2rem;
-  height: 100px;
-  border-radius: 5rem;
-  background-color: beige;
-}
+    h1{
+    font-size: 3rem;
+    font-weight: normal;
+  }
+  .Thumbnail{
+    display: inline-block;
+    width: 100px;
+    margin-block: 2rem;
+    height: 100px;
+    border-radius: 5rem;
+    background-color: white;
+    box-shadow: 1px 1px 3px ${(props) => props.theme.colors.textMain};
+  }
+  .ThumbnailImg{
+    border-radius: 5rem;
+    width: 100%;
+  }
+  .stackBox{
+    /* border: 2px solid white; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    .stack{
+      width: 40px;
+      height: 40px;
+      border-radius: 3rem;
+      border: 2px solid white;
+      margin: 2.6px;
+      display: inline;
+      padding: 1rem;
+      background-color: white;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
 }
 .userToggle{
   text-align: center;

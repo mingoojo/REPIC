@@ -115,6 +115,7 @@ nav{
     border: 1px solid ${(props) => props.theme.colors.textMain};
     color: ${(props) => props.theme.colors.textMain};
     border-radius: .4rem;
+    white-space: nowrap;
   }
   .logout:hover{
     background-color: ${(props) => props.theme.colors.textMain};

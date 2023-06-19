@@ -43,6 +43,11 @@ export default function ModalSmall({ setToggle, toggle }:ModalSmallProps) {
               <>
                 <Link to={`/private/${userId}`} onClick={() => { setToggle(!toggle); }}>
                   <li className="headerSide">
+                    정보수정
+                  </li>
+                </Link>
+                <Link to={`/mypage/${userId}`} onClick={() => { setToggle(!toggle); }}>
+                  <li className="headerSide">
                     마이페이지
                   </li>
                 </Link>

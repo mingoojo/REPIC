@@ -10,7 +10,7 @@ export default function useFetchCommunityStore() {
   const [text, setText] = useState('');
 
   // 글불러오기
-  const fetchGet = store.fetchGetCommunity;
+  const { fetchGetCommunity } = store;
 
   // 글작성하기
   const fetchAddDoc = () => {
@@ -45,7 +45,7 @@ export default function useFetchCommunityStore() {
   };
 
   return {
-    fetchGet,
+    fetchGetCommunity,
     title,
     text,
     setTitle,

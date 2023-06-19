@@ -17,7 +17,7 @@ export default function LogInHeader({ userId }: {userId:string|undefined}) {
           isDarkMode ? (
             <img className="headerLogo" src="/images/logoB_.png" alt="test" />
           ) : (
-            <img className="headerLogo" src="/images/logoW_.png" alt="test" />
+            <img className="headerLogo" src="/images/logoW__.png" alt="test" />
           )
         }
         <Link to="/">홈</Link>
@@ -37,6 +37,7 @@ export default function LogInHeader({ userId }: {userId:string|undefined}) {
             정보수정
           </p>
         </Link>
+        <Link to={`/mypage/${userId}`}>마이페이지</Link>
         <button className="logout" type="button" onClick={handleLogout}>로그아웃</button>
       </li>
     </>

@@ -6,19 +6,18 @@ import useFetchPrivateStore from '../hooks/useFetchPrivateStore';
 import usePrivateStore from '../hooks/usePrivateStore';
 
 const Container = styled.div`
-  min-height: 90vh;
   padding: 0 1rem 0 1rem;
 `;
 
 export default function PrivatePage() {
   const params = useParams();
-  const { fetchGet } = useFetchPrivateStore();
+  const { fetchGetPrivate } = useFetchPrivateStore();
   const [{ privateItem }] = usePrivateStore();
   const myPrivateData = privateItem.filter((Item) => (
     Item.uid === params.id
   ));
   useEffect(() => {
-    fetchGet();
+    fetchGetPrivate();
   }, []);
 
   if (!myPrivateData.length) {

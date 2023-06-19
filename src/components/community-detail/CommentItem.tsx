@@ -18,27 +18,40 @@ padding: 1rem;
 div{
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   ul{
     font-size: 1.5rem;
+    display: flex;
+    margin-bottom: .5rem;
+    .date{
+      color: ${(props) => props.theme.colors.textSecond};
+    }
   }
   p{
     font-size: 1.5rem;
     line-height: 2.2rem;
   }
   a{
-  text-decoration: none;
-  color: ${(props) => props.theme.colors.textSecond};
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-right: 2rem;
-}
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.textMain};
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 2rem;
+    font-family: 'Noto Sans CJK KR';
+    font-weight: normal;
+  }
+  .thumbNail{
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid ${(props) => props.theme.colors.textMain};
+    background-color: white;
+  }
 }
 `;
 
 export default function CommentItem({ comment }:CommentItemProps) {
   const { date } = getCreatedTime({ time: comment.createdTime });
-  const [userinfo, setUserinfo] = useState(nullPrivateData);
+  const [userinfo, setUserinfo] = useState<PrivateData>(nullPrivateData);
   const [{ privateItem }] = usePrivateStore();
 
   useEffect(() => {
@@ -60,11 +73,15 @@ export default function CommentItem({ comment }:CommentItemProps) {
   return (
     <Container>
       <div>
-        <Link to={`/private/${userinfo.uid}`}>
-          {userinfo.nickName[userinfo.nickName.length - 1]}
-        </Link>
         <ul>
-          {date}
+          <Link to={`/mypage/${userinfo.uid}`}>
+            <li>
+              {userinfo.nickName[userinfo.nickName.length - 1]}
+            </li>
+          </Link>
+          <li className="date">
+            {date}
+          </li>
         </ul>
       </div>
       <div>

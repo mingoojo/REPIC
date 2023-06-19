@@ -9,7 +9,8 @@ import UserActivity from './UserActivity';
 
 const Container = styled.div`
 width: 100%;
-min-height: 90vh;
+display: flex;
+justify-content: space-between;
 @media (max-width: 720px) {
   margin-bottom: 5rem;
 }

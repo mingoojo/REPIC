@@ -3,14 +3,17 @@ import { useEffect } from 'react';
 import useCommunityStore from '../hooks/useCommunityStore';
 import useFetchCommunityStore from '../hooks/useFetchCommunityStore';
 import CommnityDetailView from '../components/community-detail/CommnityDetailView';
+import useFetchPrivateStore from '../hooks/useFetchPrivateStore';
 
 export default function CommunityDetailPage() {
   const params = useParams();
 
-  const { fetchGet } = useFetchCommunityStore();
+  const { fetchGetCommunity } = useFetchCommunityStore();
+  const { fetchGetPrivate } = useFetchPrivateStore();
 
   useEffect(() => {
-    fetchGet();
+    fetchGetCommunity();
+    fetchGetPrivate();
   }, []);
 
   const [{ communityItems }] = useCommunityStore();

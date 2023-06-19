@@ -60,22 +60,28 @@ export type PrivateData = {
   id : string
   uid : string,
   email : string,
-  nickName : string,
-  introduce : string,
-  column: Column[]
+  nickName : string[],
+  introduce : string[],
+  column: Column[],
+  stacks: string[]
 }
 
 export const nullPrivateData = {
   id: '',
   uid: '',
   email: '',
-  nickName: '',
-  introduce: '',
+  nickName: [''],
+  introduce: [''],
   column: [
     {
       title: '',
       text: '',
+      createdTime: {
+        seconds: 0,
+        nanoseconds: 0,
+      },
     },
   ],
+  stacks: [''],
 
 };

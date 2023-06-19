@@ -4,6 +4,7 @@ import CommunityPage from './pages/CommunityPage';
 import CommunityWritePage from './pages/CommunityWritePage';
 import HomePage from './pages/Homepage';
 import LogInPage from './pages/LogInPage';
+import MyPage from './pages/MyPage';
 import PrivatePage from './pages/PrivatePage';
 import PrivateWritePage from './pages/PrivateWritePage';
 import ProjectListPage from './pages/ProjectListPage';
@@ -25,6 +26,7 @@ const routes = [
       // { path: '/projects/update/:id', element: <ProjectUpdatePage /> },
       { path: '/private/:id', element: <PrivatePage /> },
       { path: '/private/write/:id', element: <PrivateWritePage /> },
+      { path: '/mypage/:id', element: <MyPage /> },
     ],
   },
 ];

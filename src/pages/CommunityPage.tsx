@@ -14,14 +14,14 @@ const Container = styled.div`
 export type Radio = 'Recent' | 'View' | 'Likes'
 
 export default function CommnuityPage() {
-  const { fetchGet } = useFetchCommunityStore();
+  const { fetchGetCommunity } = useFetchCommunityStore();
   const [, store] = useCommunityStore();
   const [params] = useSearchParams();
   const Page = params.get('page') ?? '';
   const [check, setCheck] = useState<Radio>('Recent');
 
   useEffect(() => {
-    fetchGet();
+    fetchGetCommunity();
   }, []);
 
   useEffect(() => {
@@ -33,9 +33,7 @@ export default function CommnuityPage() {
 
   useEffect(() => {
     if (check === 'Recent') {
-      communityItems.sort((a, b) => Number(
-        String(b.createdTime.seconds) + String(b.createdTime.nanoseconds),
-      ) - Number(String(a.createdTime.seconds) + String(a.createdTime.nanoseconds)));
+      communityItems.sort((a, b) => b.createdTime.seconds - a.createdTime.seconds);
     } else if (check === 'View') {
       communityItems.sort((a, b) => b.view.length - a.view.length);
     } else if (check === 'Likes') {

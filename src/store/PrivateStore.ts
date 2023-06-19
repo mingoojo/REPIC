@@ -1,5 +1,5 @@
 import {
-  addDoc, arrayUnion, collection, doc, onSnapshot, updateDoc,
+  addDoc, arrayRemove, arrayUnion, collection, doc, onSnapshot, updateDoc,
 } from 'firebase/firestore';
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
@@ -7,21 +7,6 @@ import { appAuth, appFireStore } from '../firebase/config';
 import {
   Column, fetchUpdateCommunityProp, PrivateData, UserUpdate,
 } from '../type/types';
-
-// const nullPrivate = {
-//   id: '',
-//   uid: '',
-//   email: '',
-//   nickName: '',
-//   introduce: '',
-//   column: [
-//     {
-//       title: '',
-//       text: '',
-//     },
-//   ],
-
-// };
 
 @singleton()
 @Store()
@@ -77,8 +62,9 @@ export default class PrivateStore {
   // 글쓰기
   async addDocument({ email, nickName }:{ email:string, nickName:string}) {
     const uid = appAuth.currentUser?.uid || '';
-    const introduce = '';
+    const introduce = [] as string[];
     const column:Column[] = [];
+    const stacks = [] as string[];
     const colRef = collection(appFireStore, 'private');
     this.setIsPending(true);
     this.setSuccess(false);
@@ -86,7 +72,7 @@ export default class PrivateStore {
 
     try {
       await addDoc(colRef, {
-        uid, email, nickName, introduce, column,
+        uid, email, nickName: [nickName], introduce, column, stacks,
       }).then(() => {
         // eslint-disable-next-line no-console
         console.log('Done');
@@ -133,8 +119,33 @@ export default class PrivateStore {
     this.setSuccess(false);
     this.setError(false);
     try {
+      // await updateDoc(Ref, {
+      //   [updateKey]: arrayRemove(updateValue),
+      // });
       await updateDoc(Ref, {
         [updateKey]: arrayUnion(updateValue),
+      });
+      this.setIsPending(false);
+      this.setSuccess(true);
+      this.setError(false);
+    } catch (err) {
+      this.setIsPending(false);
+      this.setSuccess(false);
+      this.setError(true);
+    }
+  }
+
+  // 유저정보 삭제
+  async fetchDelPrivateUser({
+    tranaction, docId, updateKey, updateValue,
+  }:fetchUpdateCommunityProp<string>) {
+    const Ref = doc(appFireStore, tranaction, docId);
+    this.setIsPending(true);
+    this.setSuccess(false);
+    this.setError(false);
+    try {
+      await updateDoc(Ref, {
+        [updateKey]: arrayRemove(updateValue),
       });
       this.setIsPending(false);
       this.setSuccess(true);
