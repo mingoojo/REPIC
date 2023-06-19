@@ -16,6 +16,10 @@ export default function CommunityDetailPage() {
     fetchGetPrivate();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [{ communityItems }] = useCommunityStore();
 
   const [communityItem] = communityItems.filter((item) => (
