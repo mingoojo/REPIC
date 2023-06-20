@@ -10,7 +10,6 @@ type UserCardProps = {
 export default function UserCard({ params }:UserCardProps) {
   const [{ privateItem }] = usePrivateStore();
   const [{ communityItems }] = useCommunityStore();
-  const { ThumbsDownload } = useFetchThumbStorage();
 
   const PrivateItem = privateItem.filter((item) => (
     item.uid === params
@@ -19,12 +18,12 @@ export default function UserCard({ params }:UserCardProps) {
     item.uid === params
   ));
 
-  if (CommunityItems.length === 0 || PrivateItem.length === 0) {
+  if (PrivateItem.length === 0) {
     return null;
   }
 
-  console.log(CommunityItems);
-  console.log(PrivateItem);
+  // console.log(CommunityItems);
+  // console.log(PrivateItem);
 
   return (
     <div>

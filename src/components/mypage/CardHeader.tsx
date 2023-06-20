@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import useFetchThumbStorage from '../../hooks/useFetchThumbStorage';
 import { PrivateData } from '../../type/types';
+import MyProfile from './MyProfile';
 
 type CardHeaderProps = {
   params : string,
@@ -18,11 +19,9 @@ export default function CardHeader({ params, PrivateItem }:CardHeaderProps) {
     return null;
   }
 
-  console.log(Url);
-
   return (
     <div>
-      CardHeader
+      <MyProfile Url={Url} PrivateItem={PrivateItem} />
     </div>
   );
 }

@@ -66,6 +66,18 @@ export type PrivateData = {
   stacks: string[]
 }
 
+export type ProjectItem = {
+  createdTime : CreatedTime,
+  likes : string[],
+  stacks : string[],
+  text : string,
+  timeline: string[],
+  title : string,
+  uid : string,
+  view : number[],
+  id:string
+}
+
 export const nullPrivateData = {
   id: '',
   uid: '',

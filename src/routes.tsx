@@ -7,7 +7,9 @@ import LogInPage from './pages/LogInPage';
 import MyPage from './pages/MyPage';
 import PrivatePage from './pages/PrivatePage';
 import PrivateWritePage from './pages/PrivateWritePage';
-import ProjectListPage from './pages/ProjectListPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import ProjectPage from './pages/ProjectPage';
+import ProjectWritePage from './pages/projectWritePage';
 import SignUpPage from './pages/SignUpPage';
 
 const routes = [
@@ -20,9 +22,9 @@ const routes = [
       { path: '/communities', element: <CommunityPage /> },
       { path: '/communities/write', element: <CommunityWritePage /> },
       { path: '/communities/:id', element: <CommunityDetailPage /> },
-      { path: '/projects', element: <ProjectListPage /> },
-      // { path: '/projects/:id', element: <ProjecDetailPage /> },
-      // { path: '/projects/write', element: <ProjectWritePage /> },
+      { path: '/projects', element: <ProjectPage /> },
+      { path: '/projects/:id', element: <ProjectDetailPage /> },
+      { path: '/projects/write', element: <ProjectWritePage /> },
       // { path: '/projects/update/:id', element: <ProjectUpdatePage /> },
       { path: '/private/:id', element: <PrivatePage /> },
       { path: '/private/write/:id', element: <PrivateWritePage /> },

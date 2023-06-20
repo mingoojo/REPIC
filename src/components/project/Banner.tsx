@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  .communityBanner{
+  .projectBanner{
   /* border: 2px solid #222; */
   border-radius: 1rem;
   height: 150px;
@@ -9,12 +9,12 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 1rem;
-  background-image: url('/images/communityImage2.jpg');
+  background-image: url('/images/projectImage2.jpg');
   background-size: cover ;
   background-position: center;
   background-color: black;
   }
-  .communityHeader{
+  .projectHeader{
     margin-bottom: 1rem;
     h1{
       margin-block: 1rem;
@@ -31,17 +31,17 @@ const Container = styled.div`
 export default function Banner() {
   return (
     <Container>
-      <div className="communityHeader">
+      <div className="projectHeader">
         <h1>
           [
-          COMMUNITY
+          PROJECT
           ]
         </h1>
         <p>
-          다양한 사람을 만나고 생각의 폭을 넓혀보세요.
+          다른 사람들과 팀을 꾸리고 프로젝트를 진행해보세요.
         </p>
       </div>
-      <div className="communityBanner" />
+      <div className="projectBanner" />
     </Container>
   );
 }
