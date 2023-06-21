@@ -27,6 +27,7 @@ module.exports = {
     },
   },
   rules: {
+    'react/require-default-props': [2, { functions: 'defaultArguments' }],
     'no-plusplus': 'off',
     'linebreak-style': 0,
     indent: ['error', 2],

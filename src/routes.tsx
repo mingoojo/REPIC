@@ -1,16 +1,7 @@
 import Layout from './components/Layout';
-import CommunityDetailPage from './pages/CommunityDetailPage';
-import CommunityPage from './pages/CommunityPage';
-import CommunityWritePage from './pages/CommunityWritePage';
-import HomePage from './pages/Homepage';
-import LogInPage from './pages/LogInPage';
-import MyPage from './pages/MyPage';
-import PrivatePage from './pages/PrivatePage';
-import PrivateWritePage from './pages/PrivateWritePage';
-import ProjectDetailPage from './pages/ProjectDetailPage';
-import ProjectPage from './pages/ProjectPage';
-import ProjectWritePage from './pages/projectWritePage';
-import SignUpPage from './pages/SignUpPage';
+import HomePage from './page/HomePage';
+import LogInPage from './page/LogInPage';
+import SignUpPage from './page/SignUpPage';
 
 const routes = [
   {
@@ -19,16 +10,6 @@ const routes = [
       { path: '/', element: <HomePage /> },
       { path: '/login', element: <LogInPage /> },
       { path: '/signup', element: <SignUpPage /> },
-      { path: '/communities', element: <CommunityPage /> },
-      { path: '/communities/write', element: <CommunityWritePage /> },
-      { path: '/communities/:id', element: <CommunityDetailPage /> },
-      { path: '/projects', element: <ProjectPage /> },
-      { path: '/projects/:id', element: <ProjectDetailPage /> },
-      { path: '/projects/write', element: <ProjectWritePage /> },
-      // { path: '/projects/update/:id', element: <ProjectUpdatePage /> },
-      { path: '/private/:id', element: <PrivatePage /> },
-      { path: '/private/write/:id', element: <PrivateWritePage /> },
-      { path: '/mypage/:id', element: <MyPage /> },
     ],
   },
 ];

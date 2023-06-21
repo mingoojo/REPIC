@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Import the functions you need from the SDKs you need
 import * as firebase from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
@@ -18,7 +19,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
-// const db = getFirestore(app);
 const analytics = getAnalytics(app);
 const firebaseApp = getApp();
 const appAuth = getAuth();
