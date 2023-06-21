@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import useLogInFormStore from '../../hooks/useLogInFormStore';
 import Button from '../ui/Button';
 import InputBundle from '../ui/InputBundle';
 
@@ -27,18 +28,28 @@ text-align: center;
 `;
 
 export default function LogInForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [{ email, password }, store] = useLogInFormStore();
+
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
-    //
+    e.preventDefault();
+    store.login();
   };
+
+  const setEmail = (value:string) => {
+    store.changeEmail(value);
+  };
+
+  const setPassword = (value:string) => {
+    store.changePassword(value);
+  };
+
   return (
     <Container className="loginBox">
       <p className="login">REPIC아이디로 로그인</p>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <InputBundle value={email} onChange={setEmail} label="Email" />
-          <InputBundle value={password} onChange={setPassword} label="Password" />
+          <InputBundle value={password} onChange={setPassword} label="Password" type="password" />
           <Button label="로그인" type="submit" />
           <p>
             아직 회원이 아니신가요?

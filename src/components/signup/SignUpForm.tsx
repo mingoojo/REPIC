@@ -57,8 +57,8 @@ export default function SignUpForm() {
         <fieldset>
           <InputBundle label="Email" value={email} onChange={setEmail} />
           <InputBundle label="NickName" value={displayName} onChange={setDisplayName} />
-          <InputBundle label="Password" value={password} onChange={setPassword} />
-          <InputBundle label="PasswordComfirm" value={passwordComfirm} onChange={setPasswordComfirm} />
+          <InputBundle label="Password" type="password" value={password} onChange={setPassword} />
+          <InputBundle label="PasswordComfirm" type="password" value={passwordComfirm} onChange={setPasswordComfirm} />
           <Button type="submit" label="가입하기" />
           <p>
             이미 회원이신가요?
