@@ -27,7 +27,7 @@ text-align: center;
 }
 `;
 
-export default function SignUpContent() {
+export default function LogInContent() {
   const { isDarkMode } = useDarkMode();
   return (
     <Container>
@@ -36,6 +36,7 @@ export default function SignUpContent() {
           <img className="MainLogo" src="/images/logoB.png" alt="test" />
         ) : (
           <img className="MainLogo" src="/images/logoW.png" alt="test" />
+
         )
       }
       <div className="introComent">

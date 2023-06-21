@@ -1,8 +1,11 @@
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
+import getWindowSize from '../utils/getWindowSize';
+import Footer from './default/Footer';
 import Header from './default/Header';
 
-const ContainerLayout = styled.div`
+const Container = styled.div`
 max-width: 760px;
 margin: auto;
 padding: 0 1.5rem 0 1.5rem;
@@ -10,12 +13,26 @@ margin-top: 3rem;
 `;
 
 export default function Layout() {
+  const { setResize, delResize } = getWindowSize();
+
+  // 로그인페이지와 사인업페이지에서 해더를 보여주지 않기 위한 메서드
+  const location = !!(useLocation().pathname === '/login' || useLocation().pathname === '/signup');
+
+  // 브라우져 창 크기 전역관리
+  useEffect(() => {
+    setResize();
+    return () => {
+      delResize();
+    };
+  }, []);
+
   return (
     <div>
-      <Header />
-      <ContainerLayout>
+      {!location && <Header />}
+      <Container>
         <Outlet />
-      </ContainerLayout>
+      </Container>
+      <Footer />
     </div>
   );
 }

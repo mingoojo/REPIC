@@ -97,3 +97,5 @@ export const nullPrivateData = {
   stacks: [''],
 
 };
+
+export const nullWidth = window.innerWidth;
