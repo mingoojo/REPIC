@@ -78,24 +78,31 @@ export type ProjectItem = {
   id:string
 }
 
-export const nullPrivateData = {
+export const nullWidth = window.innerWidth;
+
+export const defaultThumbNail = 'https://firebasestorage.googleapis.com/v0/b/repic---communityproject.appspot.com/o/images%2FuserThumbs%2Fdefault.jpg?alt=media&token=ba99744a-7928-4918-ae05-37a4782cc509';
+export const defaultIntroduce = [] as string[];
+export const defaultStacks = [] as string[];
+export const defaultComments = [] as string[];
+export const defaultLikes = [] as string[];
+export const defaultView = [] as number[];
+
+export const nullUserData = {
   id: '',
   uid: '',
   email: '',
   nickName: [''],
   introduce: [''],
-  column: [
-    {
-      title: '',
-      text: '',
-      createdTime: {
-        seconds: 0,
-        nanoseconds: 0,
-      },
-    },
-  ],
   stacks: [''],
-
+  thumnailURL: '',
 };
 
-export const nullWidth = window.innerWidth;
+export type UserData = {
+  id : string
+  uid : string,
+  email : string,
+  nickName : string[],
+  introduce : string[],
+  stacks: string[],
+  thumnailURL: '',
+}

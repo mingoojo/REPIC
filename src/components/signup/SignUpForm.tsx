@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../ui/Button';
 import InputBundle from '../ui/InputBundle';
+import useSignUpFormStore from '../../hooks/useSignUpFormStore';
 
 const Container = styled.div`
 margin-top: 3rem;
@@ -14,24 +14,6 @@ text-align: center;
     margin: auto;
     margin-block: 2rem;
     max-width: 300px;
-    div{
-      margin-block: 1rem;
-    }
-    label{
-      text-align: left;
-      p{
-        margin-bottom: 1rem;
-      }
-      input{
-        border-radius: 1rem;
-        border: none;
-        background-color: ${(props) => props.theme.colors.buttonMain};
-        height: 40px;
-        width: 300px;
-        padding: 1rem;
-        color: ${(props) => props.theme.colors.textMain};
-      }
-    }
     p{
       margin-top: 2rem;
       a{
@@ -42,24 +24,43 @@ text-align: center;
 `;
 
 export default function SignUpForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordComfirm, setPasswordComfirm] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const navigate = useNavigate();
+  const [{
+    email, displayName, password, passwordComfirm, valid,
+  }, SignUpStore] = useSignUpFormStore();
+
+  const setEmail = (value:string) => {
+    SignUpStore.changeEmail(value);
+  };
+
+  const setDisplayName = (value:string) => {
+    SignUpStore.changeDisplayName(value);
+  };
+
+  const setPassword = (value:string) => {
+    SignUpStore.changePassword(value);
+  };
+
+  const setPasswordComfirm = (value:string) => {
+    SignUpStore.changePasswordComfirm(value);
+  };
 
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    SignUpStore.signup().then(() => {
+      navigate('/');
+    });
   };
   return (
     <Container>
       <p className="signup">REPIC회원가입</p>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <InputBundle label="Email" value={email} onChange={setEmail} />
-          <InputBundle label="NickName" value={displayName} onChange={setDisplayName} />
-          <InputBundle label="Password" type="password" value={password} onChange={setPassword} />
-          <InputBundle label="PasswordComfirm" type="password" value={passwordComfirm} onChange={setPasswordComfirm} />
-          <Button type="submit" label="가입하기" />
+          <InputBundle label="Email" value={email} onChange={setEmail} placeholder="email@exmaple.com" />
+          <InputBundle label="NickName" value={displayName} onChange={setDisplayName} placeholder="Nick Name" />
+          <InputBundle label="Password" type="password" value={password} onChange={setPassword} placeholder="Password" />
+          <InputBundle label="PasswordComfirm" type="password" value={passwordComfirm} onChange={setPasswordComfirm} placeholder="Password" />
+          <Button type="submit" label="가입하기" disable={valid} />
           <p>
             이미 회원이신가요?
             <Link to="/login">로그인</Link>

@@ -1,4 +1,3 @@
-import { User } from 'firebase/auth';
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
 import { firebaseService } from '../service/firebaseService';
@@ -10,12 +9,6 @@ export default class LogInFormStore {
 
   password = '';
 
-  // 현재 로그인한 유저 없다면 빈값
-  user = {} as User;
-
-  // 파이어베이스와의 통신상태
-  isAuthReady = false;
-
   // 에러상태
   error = false;
 
@@ -23,19 +16,17 @@ export default class LogInFormStore {
   isPending = false;
 
   async login() {
-    const user = await firebaseService.login({ email: this.email, password: this.password });
-    this.setUser(user);
-  }
-
-    @Action()
-  setUser(payload:User) {
-    this.user = payload;
-  }
-
-  @Action()
-    setIsAuthReady(payload:boolean) {
-      this.isAuthReady = payload;
+    try {
+      this.setIsPending(true);
+      this.setError(false);
+      await firebaseService.login({ email: this.email, password: this.password });
+      this.setIsPending(false);
+      this.setError(false);
+    } catch (error) {
+      this.setError(true);
+      this.setIsPending(false);
     }
+  }
 
   @Action()
   setError(payload:boolean) {
@@ -55,5 +46,9 @@ export default class LogInFormStore {
   @Action()
   changePassword(password:string) {
     this.password = password;
+  }
+
+  get valid() {
+    return this.email.includes('@') && this.password.length >= 4;
   }
 }

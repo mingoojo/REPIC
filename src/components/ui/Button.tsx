@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 type ButtonProps = {
   label : string,
   type?: 'button' | 'submit';
+  disable?:boolean
 }
 
 const ButtonBundle = styled.button`
@@ -20,10 +21,15 @@ border: none;
 &:active{
   background-color: ${(props) => props.theme.colors.primaryDeep};
 }
+
+&:disabled {
+    filter: grayscale(80%);
+    cursor: not-allowed;
+}
 `;
 
-export default function Button({ label, type = 'button' }:ButtonProps) {
+export default function Button({ label, type = 'button', disable = true }:ButtonProps) {
   return (
-    <ButtonBundle type={type}>{label}</ButtonBundle>
+    <ButtonBundle disabled={!disable} type={type}>{label}</ButtonBundle>
   );
 }
