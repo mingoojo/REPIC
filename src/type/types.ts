@@ -1,82 +1,82 @@
-export type DocumentProps = {
-  id : string
-  text : string
-  title : string
-  uid : string
-  createdTime : {
-    seconds : number
-    nanoseconds : number
-  }
-}
+// export type DocumentProps = {
+//   id : string
+//   text : string
+//   title : string
+//   uid : string
+//   createdTime : {
+//     seconds : number
+//     nanoseconds : number
+//   }
+// }
 
-export type CreatedTime = {
-  seconds : number,
-  nanoseconds : number
-}
+// export type CreatedTime = {
+//   seconds : number,
+//   nanoseconds : number
+// }
 
-export const defaultCommnets = {
-  uid: '',
-  likes: 0,
-  text: '',
-};
+// export const defaultCommnets = {
+//   uid: '',
+//   likes: 0,
+//   text: '',
+// };
 
-export type Comment = {
-  uid : string
-  text : string
-  likes : string[]
-  createdTime : CreatedTime
-}
+// export type Comment = {
+//   uid : string
+//   text : string
+//   likes : string[]
+//   createdTime : CreatedTime
+// }
 
-export type CommunityItem = {
-  comments : Comment[]
-  createdTime : CreatedTime
-  id : string
-  likes : string[]
-  text : string
-  title : string
-  uid: string
-  view : number[]
-}
+// export type CommunityItem = {
+//   comments : Comment[]
+//   createdTime : CreatedTime
+//   id : string
+//   likes : string[]
+//   text : string
+//   title : string
+//   uid: string
+//   view : number[]
+// }
 
-export type fetchUpdateCommunityProp<T> = {
-  tranaction:string,
-  docId:string,
-  updateKey:string,
-  updateValue:T
-}
+// export type fetchUpdateCommunityProp<T> = {
+//   tranaction:string,
+//   docId:string,
+//   updateKey:string,
+//   updateValue:T
+// }
 
-export type Column = {
-  title : string,
-  text : string,
-  createdTime : CreatedTime
-}
+// export type Column = {
+//   title : string,
+//   text : string,
+//   createdTime : CreatedTime
+// }
 
-export type UserUpdate = {
-  nickName: string,
-  intro: string
-}
+// export type UserUpdate = {
+//   nickName: string,
+//   intro: string
+// }
 
-export type PrivateData = {
-  id : string
-  uid : string,
-  email : string,
-  nickName : string[],
-  introduce : string[],
-  column: Column[],
-  stacks: string[]
-}
+// export type PrivateData = {
+//   id : string
+//   uid : string,
+//   email : string,
+//   nickName : string[],
+//   introduce : string[],
+//   column: Column[],
+//   stacks: string[]
+// }
 
-export type ProjectItem = {
-  createdTime : CreatedTime,
-  likes : string[],
-  stacks : string[],
-  text : string,
-  timeline: string[],
-  title : string,
-  uid : string,
-  view : number[],
-  id:string
-}
+// export type ProjectItem = {
+//   createdTime : CreatedTime,
+//   likes : string[],
+//   stacks : string[],
+//   text : string,
+//   timeline: string[],
+//   title : string,
+//   uid : string,
+//   view : number[],
+//   id:string
+// }
 
 export const nullWidth = window.innerWidth;
 
@@ -94,8 +94,12 @@ export const nullUserData = {
   nickName: [''],
   introduce: [''],
   stacks: [''],
-  thumnailURL: '',
+  thumbnailURL: '',
 };
+
+export const frontEndStacks = ['react', 'vue', 'angler', 'javascript', 'typescript', 'svelte', 'next'];
+export const backEndStacks = ['diango', 'docker', 'express', 'java', 'mongodb', 'mysql', 'nest', 'nodejs', 'postgresql', 'spring'];
+export const globalStacks = ['github', 'aws'];
 
 export type UserData = {
   id : string
@@ -104,5 +108,6 @@ export type UserData = {
   nickName : string[],
   introduce : string[],
   stacks: string[],
-  thumnailURL: '',
+  thumbnailURL: '',
+  Initial : boolean
 }

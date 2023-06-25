@@ -4,8 +4,8 @@ import { firebaseService } from '../service/firebaseService';
 
 @singleton()
 @Store()
-export default class ThumbNailStore {
-  imageUrl = '';
+export default class ThumbNailFormStore {
+  imageFile = {} as File;
 
   // 에러상태
   error = false;
@@ -13,13 +13,12 @@ export default class ThumbNailStore {
   // 통신상태
   isPending = false;
 
-  // 이미지 얻기
-  async downloadURl() {
+  // 이미지 업로드
+  async uploadImage() {
     this.setIsPending(true);
     this.setError(false);
     try {
-      const URL = await firebaseService.ThumbsDownload();
-      this.setImageURL(URL);
+      await firebaseService.ThumbsUpload({ file: this.imageFile });
       this.setIsPending(false);
       this.setError(false);
     } catch (error) {
@@ -29,8 +28,8 @@ export default class ThumbNailStore {
   }
 
   @Action()
-  setImageURL(URL:string) {
-    this.imageUrl = URL;
+  setImageFile(imageFile:File) {
+    this.imageFile = imageFile;
   }
 
   @Action()

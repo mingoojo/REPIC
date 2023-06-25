@@ -32,6 +32,9 @@ li{
     height: 2rem;
     margin-right: 3rem;
   }
+  button{
+    margin-left: 1.5rem;
+  }
 }
 `;
 

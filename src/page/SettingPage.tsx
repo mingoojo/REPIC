@@ -8,12 +8,12 @@ import useUserInfoStore from '../hooks/useUserInfoStore';
 export default function SettingPage() {
   const params = useParams();
   const navigate = useNavigate();
-  const [{ UserInfo }, store] = useUserInfoStore();
+  const [{ UserInfo }, userInfoStore] = useUserInfoStore();
   const { currentUser } = appAuth;
 
   useEffect(() => {
-    store.readUserInfo({ uid: String(params.id) });
-  }, [store]);
+    userInfoStore.readUserInfo({ uid: String(params.id) });
+  }, [userInfoStore]);
 
   if (params.id !== currentUser?.uid) {
     alert('잘못된 접근입니다.');
@@ -27,7 +27,9 @@ export default function SettingPage() {
     return null;
   }
 
+  const [userInfo] = UserInfo;
+
   return (
-    <SettingView UserInfo={UserInfo} />
+    <SettingView userInfo={userInfo} />
   );
 }

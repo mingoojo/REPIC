@@ -3,11 +3,17 @@
 import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, User,
 } from 'firebase/auth';
-import { addDoc, collection, onSnapshot } from 'firebase/firestore';
+import {
+  addDoc, collection, doc, onSnapshot, updateDoc,
+} from 'firebase/firestore';
 import {
   getDownloadURL, getStorage, ref, uploadBytesResumable,
 } from 'firebase/storage';
-import { appAuth, appFireStore, timeStamp } from '../firebase/config';
+import { container } from 'tsyringe';
+import {
+  appAuth, appFireStore, db, timeStamp,
+} from '../firebase/config';
+import UserInfoUpdateStore from '../store/UserInfoUpdateStore';
 import {
   defaultComments, defaultIntroduce, defaultLikes, defaultStacks,
   defaultThumbNail, defaultView, UserData,
@@ -23,6 +29,8 @@ type addDocumentProps = {
 
 export default class FirebaseService {
   AppAuth = appAuth;
+
+  userInfoUpdateStore = container.resolve(UserInfoUpdateStore);
 
   // 로그인 기능
   async login({ email, password }:{email:string, password:string}):Promise<void> {
@@ -53,6 +61,7 @@ export default class FirebaseService {
     const createdTime = timeStamp.fromDate(new Date());
     const uid = this.AppAuth.currentUser?.uid || '';
     const colRef = collection(appFireStore, transaction);
+    const defaultURL = `https://firebasestorage.googleapis.com/v0/b/repic---communityproject.appspot.com/o/images%2FuserThumbs%2F${uid}?alt=media`;
 
     // 유저정보 작성
     const UserDoc = {
@@ -61,7 +70,8 @@ export default class FirebaseService {
       nickName: [nickName],
       introduce: defaultIntroduce,
       stacks: defaultStacks,
-      thumbnailURL: defaultThumbNail,
+      thumbnailURL: defaultURL,
+      Initial: false,
     };
 
     // 커뮤니티 글 작성
@@ -82,33 +92,53 @@ export default class FirebaseService {
     }
   }
 
+  // 글 수정
+  async updateDocument({
+    transaction, docId, field, value,
+  }:{
+    transaction:string, docId:string, field:string, value:string}) {
+    const CurrentUser = this.AppAuth.currentUser;
+    const Ref = doc(db, transaction, docId);
+
+    await updateDoc(Ref, {
+      [field]: value,
+    });
+  }
+
   // 사진 업로드
-  // async ThumbsUpload({ file }:{ file:File}) {
-  //   const storage = getStorage();
-  //   const uid = this.AppAuth.currentUser?.uid || '';
-  //   const metadata = { contentType: 'image/jpeg' };
-  //   const storageRef = ref(storage, `images/userThumbs/${uid}`);
-  //   const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-  //   await uploadTask.on(
-  //     'state_changed',
-  //     (snapshot) => {
-  //       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //       console.log(`Upload is ${progress}% done`);
-  //       if (progress === 100) { window.location.reload(); }
-  //     },
-  //   );
-  // }
+  async UpdateImg({ file, Uid }:{ file:File, Uid: string}):Promise<void> {
+    console.log(file);
+    const uid = this.AppAuth.currentUser?.uid || '';
+    const storage = getStorage();
+    console.log(uid);
+    const metadata = { contentType: 'image/jpeg' };
+    const storageRef = ref(storage, `images/userThumbs/${uid}`);
+    const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+    await uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(`Upload is ${progress}% done`);
+        if (progress === 100) {
+          console.log('업데이트 완료');
+        }
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
+  }
 
   // 사진 URL불러오기
-  // async ThumbsDownload():Promise<string> {
-  //   const storage = getStorage();
-  //   const uid = this.AppAuth.currentUser?.uid || '';
-  //   console.log(uid);
-  //   const starsRef = ref(storage, `images/userThumbs/${uid}`);
-  //   const imageUrl = await getDownloadURL(starsRef);
-  //   const data = imageUrl;
-  //   return data;
-  // }
+  async getUpdatedImg({ Uid }:{Uid:string}):Promise<string> {
+    const uid = this.AppAuth.currentUser?.uid || '';
+
+    const storage = getStorage();
+    const starsRef = ref(storage, `images/userThumbs/${Uid}`);
+    const data = await getDownloadURL(starsRef);
+    return data;
+  }
 }
 
 export const firebaseService = new FirebaseService();

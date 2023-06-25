@@ -1,13 +1,22 @@
+import { styled } from 'styled-components';
 import { UserData } from '../../type/types';
+import SettingCard from './SettingCard';
+import UserCard from './UserCard';
 
 type SettingViewProps = {
-  UserInfo: UserData[]
+  userInfo: UserData
 }
 
-export default function SettingView({ UserInfo }:SettingViewProps) {
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export default function SettingView({ userInfo }:SettingViewProps) {
   return (
-    <div>
-      123
-    </div>
+    <Container>
+      <UserCard userInfo={userInfo} />
+      <SettingCard userInfo={userInfo} />
+    </Container>
   );
 }

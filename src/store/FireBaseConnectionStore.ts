@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
 import { appAuth } from '../firebase/config';
@@ -12,11 +13,11 @@ export default class FireBaseConnectionStore {
   async unsubscribe() {
     this.setConnection(false);
     try {
-      await appAuth.onAuthStateChanged((userCurrent) => {
-        if (userCurrent) {
-          this.setConnection(true);
-        }
+      const Unsubscribe = await appAuth.onAuthStateChanged(() => {
+        console.log('connecting');
+        this.setConnection(true);
       });
+      Unsubscribe();
     } catch (error) {
       this.setError(true);
     }

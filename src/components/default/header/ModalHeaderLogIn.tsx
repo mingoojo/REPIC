@@ -8,7 +8,7 @@ type HeaderLogInProps = {
 }
 
 const Container = styled.div`
-  padding-block: 2rem;
+padding-block: 2rem;
   button{
     padding: 1rem 4rem 1rem 4rem;
   }

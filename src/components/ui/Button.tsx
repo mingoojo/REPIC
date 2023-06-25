@@ -6,7 +6,7 @@ type ButtonProps = {
   disable?:boolean
 }
 
-const ButtonBundle = styled.button`
+const ButtonItem = styled.button`
 margin-top: 1rem;
 font-family: 'GmarketSansMedium';
 border-radius: 0.5rem;
@@ -30,6 +30,6 @@ border: none;
 
 export default function Button({ label, type = 'button', disable = true }:ButtonProps) {
   return (
-    <ButtonBundle disabled={!disable} type={type}>{label}</ButtonBundle>
+    <ButtonItem disabled={!disable} type={type}>{label}</ButtonItem>
   );
 }

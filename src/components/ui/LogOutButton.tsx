@@ -2,9 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import useLogOutStore from '../../hooks/useLogOutStore';
 
-const Button = styled.button`
+const ButtonItem = styled.button`
 cursor: pointer;
-margin-left: 1.5rem;
 padding: 1rem;
 font-weight: bold;
 background-color: ${(props) => props.theme.colors.backgroundMain};
@@ -26,6 +25,6 @@ export default function LogOutButton() {
     navigate('/login');
   };
   return (
-    <Button className="logout" type="button" onClick={handleLogout}>로그아웃</Button>
+    <ButtonItem className="logout" type="button" onClick={handleLogout}>로그아웃</ButtonItem>
   );
 }

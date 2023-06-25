@@ -10,7 +10,7 @@ import Loading from './default/Loading';
 const Container = styled.div`
 max-width: 760px;
 margin: auto;
-padding: 0 1.5rem 0 1.5rem;
+padding: 0 1rem 0 1rem;
 margin-top: 3rem;
 `;
 
