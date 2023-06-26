@@ -19,10 +19,6 @@ export default function CommunitiesList({ communityItems, radioValue }
   const { RecentItems, ViewItems, LikeItems } = getSortedItems({ communityItems });
   const [sortedItems, setSortedItems] = useState<CommunityItem[]>([]);
 
-  console.log(RecentItems);
-  console.log(ViewItems);
-  console.log(LikeItems);
-
   useEffect(() => {
     if (radioValue === 'Recent') {
       setSortedItems(RecentItems);
