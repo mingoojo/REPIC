@@ -21,10 +21,7 @@ export default function CommunitiesTable({
   return (
     <Container>
       <Sortingfield radioValue={radioValue} setRadioValue={setRadioValue} />
-      <CommunitiesList
-        communityItems={communityItems}
-        radioValue={radioValue}
-      />
+      <CommunitiesList communityItems={communityItems} radioValue={radioValue} />
     </Container>
   );
 }

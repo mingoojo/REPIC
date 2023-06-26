@@ -1,4 +1,5 @@
 import Layout from './components/Layout';
+import CommunityDetailPage from './page/CommunityDetailPage';
 import CommunityPage from './page/CommunityPage';
 import CommunityWritePage from './page/CommunityWritePage';
 import HomePage from './page/HomePage';
@@ -17,6 +18,7 @@ const routes = [
       { path: '/projects', element: <ProjectPage /> },
       { path: '/communities', element: <CommunityPage /> },
       { path: '/communities/write', element: <CommunityWritePage /> },
+      { path: '/communities/:id', element: <CommunityDetailPage /> },
       { path: '/setting/:id', element: <SettingPage /> },
     ],
   },

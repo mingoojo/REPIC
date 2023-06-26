@@ -13,7 +13,6 @@ export default function CommunityPage() {
   const [radioValue, setRadioValue] = useState<Radio>('Recent');
 
   const Page = params.get('page') ?? '';
-  const sort = params.get('sort') ?? '';
 
   useEffect(() => {
     navigate(`/communities?page=1&sort=${radioValue}`);

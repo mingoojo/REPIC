@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Radio } from './CommunitiesTable';
+import { Radio } from '../../page/CommunityPage';
 
 type SortingfieldProps = {
   radioValue : Radio

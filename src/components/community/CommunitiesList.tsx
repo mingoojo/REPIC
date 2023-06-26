@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Radio } from '../../page/CommunityPage';
 import { CommunityItem } from '../../type/types';
-import getSortedItems from '../../utils/getSortedItems';
 import CommunitiesItem from './CommunitiesItem';
 
 type CommunitiesListProps = {
@@ -11,31 +10,31 @@ type CommunitiesListProps = {
 }
 
 const Container = styled.div`
+  a{
+    text-decoration: none;
+  }
 
 `;
 
 export default function CommunitiesList({ communityItems, radioValue }
   :CommunitiesListProps) {
-  const { RecentItems, ViewItems, LikeItems } = getSortedItems({ communityItems });
-  const [sortedItems, setSortedItems] = useState<CommunityItem[]>([]);
-
   useEffect(() => {
     if (radioValue === 'Recent') {
-      setSortedItems(RecentItems);
+      communityItems.sort((a, b) => b.createdTime.seconds - a.createdTime.seconds);
+    } else if (radioValue === 'View') {
+      communityItems.sort((a, b) => b.view.length - a.view.length);
+    } else if (radioValue === 'Likes') {
+      communityItems.sort((a, b) => b.likes.length - a.likes.length);
     }
-    if (radioValue === 'View') {
-      setSortedItems(ViewItems);
-    }
-    if (radioValue === 'Likes') {
-      setSortedItems(LikeItems);
-    }
-  }, [radioValue]);
+  }, [radioValue, communityItems]);
 
   return (
     <Container>
       {
-        sortedItems.map((communityItem) => (
-          <CommunitiesItem key={communityItem.id} communityItem={communityItem} />
+        communityItems.map((communityItem) => (
+          <Link key={communityItem.id} to={`/communities/${communityItem.id}`}>
+            <CommunitiesItem communityItem={communityItem} />
+          </Link>
         ))
       }
     </Container>
