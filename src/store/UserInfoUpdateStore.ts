@@ -10,12 +10,12 @@ export default class UserInfoUpdateStore {
   UserURL = '';
 
   // 유저소개
-  UserIntro:string[] = [];
+  UserIntro = '';
 
   // 유저별명
-  UserNickName:string[] = [];
+  UserNickName = '';
 
-  // 유저기술
+  // 유저스택
   UserStacks:string[] = [];
 
   // 에러상태
@@ -24,10 +24,11 @@ export default class UserInfoUpdateStore {
   // 통신상태
   isPending = false;
 
+  // 초기화
   Initialization({
     UserURL, UserIntro, UserNickName, UserStacks,
   }:{
-    UserURL:string, UserIntro:string[], UserNickName:string[], UserStacks:string[]
+    UserURL:string, UserIntro:string, UserNickName:string, UserStacks:string[]
   }) {
     this.setUrl(UserURL);
     this.setIntro(UserIntro);
@@ -35,26 +36,47 @@ export default class UserInfoUpdateStore {
     this.setStacks(UserStacks);
   }
 
-  async UpdateData({ file, uid } :{ file:File, uid:string }) {
-    this.setError(false);
-    this.setIsPending(true);
-    try {
-      this.setError(false);
-      this.setIsPending(false);
-      this.uploadIMG({ file, Uid: uid });
-    } catch (error) {
-      console.log(error);
-      this.setError(true);
-      this.setIsPending(false);
-    }
-  }
-
-  async uploadIMG({ file, Uid } :{ file:File, Uid:string }) {
-    await firebaseService.UpdateImg({ file, Uid });
+  // 유저 정보 업데이트:삭제
+  async delDocumentField({
+    tranaction, docId, updateKey, updateValue,
+  }:{tranaction:string, docId:string, updateKey:string, updateValue:string}) {
+    await firebaseService.delDocumentFieldArray({
+      tranaction, docId, updateKey, updateValue,
+    });
     this.setError(false);
     this.setIsPending(false);
   }
 
+  // 유저 정보 업데이트:작성
+  async writeDocumentField({
+    tranaction, docId, updateKey, updateValue,
+  }:{tranaction:string, docId:string, updateKey:string, updateValue:string}) {
+    await firebaseService.writeDocumentFieldArray({
+      tranaction, docId, updateKey, updateValue,
+    });
+    this.setError(false);
+    this.setIsPending(false);
+  }
+
+  // 유저 정보 업데이트 닉네임, 자기소개
+  async updateDocumentField({
+    tranaction, docId, updateKey, updateValue,
+  }:{tranaction:string, docId:string, updateKey:string, updateValue:string}) {
+    await firebaseService.updateDocumentField({
+      tranaction, docId, updateKey, updateValue,
+    });
+    this.setError(false);
+    this.setIsPending(false);
+  }
+
+  // 유저 사진 업로드
+  async uploadIMG({ file, Uid, docId } :{ file:File, Uid:string, docId:string }) {
+    await firebaseService.UpdateImg({ file, Uid, docId });
+    this.setError(false);
+    this.setIsPending(false);
+  }
+
+  // 유저 사진 다운로드
   async downloadIMG({ uid } :{ uid:string }) {
     const data = await firebaseService.getUpdatedImg({ Uid: uid });
     this.setUrl(data);
@@ -66,12 +88,12 @@ export default class UserInfoUpdateStore {
   }
 
   @Action()
-  setIntro(UserIntro:string[]) {
+  setIntro(UserIntro:string) {
     this.UserIntro = UserIntro;
   }
 
   @Action()
-  setNickName(UserNickName:string[]) {
+  setNickName(UserNickName:string) {
     this.UserNickName = UserNickName;
   }
 
@@ -89,18 +111,4 @@ export default class UserInfoUpdateStore {
   setIsPending(payload:boolean) {
     this.isPending = payload;
   }
-
-  // async updateURL({ uid }:{uid:string}) {
-  //   this.setIsPending(true);
-  //   this.setError(false);
-  //   try {
-  //     const data = await firebaseService.updateURL({ Uid: uid });
-  //     this.setUrl(data);
-  //     this.setIsPending(false);
-  //     this.setError(false);
-  //   } catch (error) {
-  //     this.setIsPending(false);
-  //     this.setError(true);
-  //   }
-  // }
 }

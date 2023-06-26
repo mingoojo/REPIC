@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, User,
 } from 'firebase/auth';
 import {
-  addDoc, collection, doc, onSnapshot, updateDoc,
+  addDoc, arrayRemove, arrayUnion, collection, doc, onSnapshot, updateDoc,
 } from 'firebase/firestore';
 import {
   getDownloadURL, getStorage, ref, uploadBytesResumable,
@@ -54,6 +54,39 @@ export default class FirebaseService {
       });
   }
 
+  // 정보 업데이트 어레이 : 삭제
+  async delDocumentFieldArray({
+    tranaction, docId, updateKey, updateValue,
+  }:{tranaction:string, docId:string, updateKey:string, updateValue:string}):Promise<void> {
+    const uid = this.AppAuth.currentUser?.uid || '';
+    const Ref = doc(appFireStore, tranaction, docId);
+    await updateDoc(Ref, {
+      [updateKey]: arrayRemove(updateValue),
+    });
+  }
+
+  // 정보 업데이트 일반
+  async updateDocumentField({
+    tranaction, docId, updateKey, updateValue,
+  }:{tranaction:string, docId:string, updateKey:string, updateValue:string}):Promise<void> {
+    const uid = this.AppAuth.currentUser?.uid || '';
+    const Ref = doc(db, tranaction, docId);
+    await updateDoc(Ref, {
+      [updateKey]: updateValue,
+    });
+  }
+
+  // 정보 업데이트 어레이 : 작성
+  async writeDocumentFieldArray({
+    tranaction, docId, updateKey, updateValue,
+  }:{tranaction:string, docId:string, updateKey:string, updateValue:string}):Promise<void> {
+    const uid = this.AppAuth.currentUser?.uid || '';
+    const Ref = doc(appFireStore, tranaction, docId);
+    await updateDoc(Ref, {
+      [updateKey]: arrayUnion(updateValue),
+    });
+  }
+
   // 글작성
   async addDocument({
     email, nickName, transaction, text, title,
@@ -67,7 +100,7 @@ export default class FirebaseService {
     const UserDoc = {
       uid,
       email,
-      nickName: [nickName],
+      nickName,
       introduce: defaultIntroduce,
       stacks: defaultStacks,
       thumbnailURL: defaultURL,
@@ -106,7 +139,7 @@ export default class FirebaseService {
   }
 
   // 사진 업로드
-  async UpdateImg({ file, Uid }:{ file:File, Uid: string}):Promise<void> {
+  async UpdateImg({ file, Uid, docId }:{ file:File, Uid: string, docId:string}):Promise<void> {
     console.log(file);
     const uid = this.AppAuth.currentUser?.uid || '';
     const storage = getStorage();
@@ -114,6 +147,7 @@ export default class FirebaseService {
     const metadata = { contentType: 'image/jpeg' };
     const storageRef = ref(storage, `images/userThumbs/${uid}`);
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+    const InitialRef = doc(db, 'Users', docId);
 
     await uploadTask.on(
       'state_changed',
@@ -121,7 +155,9 @@ export default class FirebaseService {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log(`Upload is ${progress}% done`);
         if (progress === 100) {
-          console.log('업데이트 완료');
+          updateDoc(InitialRef, {
+            Initial: true,
+          });
         }
       },
       (error) => {

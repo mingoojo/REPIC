@@ -20,7 +20,7 @@ const Container = styled.div`
 `;
 
 export default function SettingCard({ userInfo }:SettingCardProps) {
-  const [{ UserURL }, userInfoUpdateStore] = useUserInfoUpdateStore();
+  const [, userInfoUpdateStore] = useUserInfoUpdateStore();
   const [file, setFile] = useState({} as File);
 
   useEffect(() => {

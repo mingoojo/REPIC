@@ -17,7 +17,7 @@ const Container = styled.div`
   input[type='checkbox']:checked + label div:before{
     content: '';
     position:absolute;
-    z-index: 0;
+    z-index: -1;
     width:7px;
     height:7px;
     border-radius: 1rem;

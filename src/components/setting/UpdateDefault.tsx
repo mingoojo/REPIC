@@ -35,10 +35,10 @@ const Container = styled.div`
 export default function UpdateDefault() {
   const [{ UserNickName, UserIntro }, userInfoUpdateStore] = useUserInfoUpdateStore();
   const handleNickName = (e:React.ChangeEvent<HTMLInputElement>) => {
-    userInfoUpdateStore.setNickName([e.target.value]);
+    userInfoUpdateStore.setNickName(e.target.value);
   };
   const handleIntro = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
-    userInfoUpdateStore.setIntro([e.target.value]);
+    userInfoUpdateStore.setIntro(e.target.value);
   };
   return (
     <Container>
@@ -47,14 +47,14 @@ export default function UpdateDefault() {
           닉네임변경
         </h1>
         <label className="NickLabel" htmlFor="nickName">NickName</label>
-        <input type="text" value={UserNickName[0]} id="nickName" onChange={handleNickName} />
+        <input type="text" value={UserNickName} id="nickName" onChange={handleNickName} />
       </div>
       <div>
         <h1>
           자기소개 작성
         </h1>
         <label className="IntroLabel" htmlFor="intro">Introduce</label>
-        <textarea className="introduce" value={UserIntro[0]} id="intro" onChange={handleIntro} cols={30} rows={10} />
+        <textarea className="introduce" value={UserIntro} id="intro" onChange={handleIntro} cols={30} rows={10} />
       </div>
     </Container>
   );

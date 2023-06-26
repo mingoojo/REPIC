@@ -69,7 +69,10 @@ export default class SignUpFormStore {
   get valid() {
     return this.email.includes('@')
       && !!this.displayName
-      && this.password.length >= 4
+      && this.password.length >= 8
+      && this.password.search(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/) === 0
       && this.password === this.passwordComfirm;
   }
 }
+
+// && this.password.search(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/) === 0

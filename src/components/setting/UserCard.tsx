@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import { appAuth } from '../../firebase/config';
 import { UserData } from '../../type/types';
 
 type UserCardProps = {
@@ -31,6 +30,20 @@ text-align: center;
       padding: 0.2rem;
     }
   }
+  .stackBox{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    .stack{
+      width: 30px;
+      height: 30px;
+      margin: .5rem .5rem .5rem .5rem;
+      background-size: contain;
+      background-color: white;
+      background-position: center;
+      border-radius: 20px;
+    }
+  }
 
   @media (max-width: 720px) {
     display: none;
@@ -41,7 +54,7 @@ export default function UserCard({ userInfo }:UserCardProps) {
   return (
     <Container>
       <h1>
-        {userInfo.nickName[userInfo.nickName.length - 1]}
+        {userInfo.nickName}
       </h1>
       <div className="Thumbnail">
         {

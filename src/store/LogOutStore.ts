@@ -12,9 +12,9 @@ export default class LogOutStore {
   isPending = false;
 
   async logout() {
+    this.setIsPending(true);
+    this.setError(false);
     try {
-      this.setIsPending(true);
-      this.setError(false);
       await firebaseService.logout();
       this.setIsPending(false);
       this.setError(false);

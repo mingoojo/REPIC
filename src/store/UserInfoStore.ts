@@ -2,8 +2,7 @@
 import { collection, onSnapshot } from 'firebase/firestore';
 import { singleton } from 'tsyringe';
 import { Action, Store } from 'usestore-ts';
-import { appAuth, appFireStore } from '../firebase/config';
-import { firebaseService } from '../service/firebaseService';
+import { appFireStore } from '../firebase/config';
 import { UserData } from '../type/types';
 
 @singleton()
@@ -45,25 +44,6 @@ export default class UserInfoStore {
       this.setError(true);
     }
   }
-
-  // 썸네일 받아오기
-  // async updateUserThumbNail({ value, field }:{ value:string, field:string }) {
-  //   this.setIsPending(true);
-  //   this.setError(false);
-  //   console.log(value, field);
-
-  //   try {
-  //     await firebaseService.updateDocument({
-  //       transaction: 'Users', docId: this.CurrentUser?.uid || '', field, value,
-  //     });
-  //     this.setIsPending(false);
-  //     this.setError(false);
-  //     this.readUserInfo({ uid: this.CurrentUser?.uid || '' });
-  //   } catch (error) {
-  //     this.setIsPending(false);
-  //     this.setError(true);
-  //   }
-  // }
 
   @Action()
   setError(payload:boolean) {
