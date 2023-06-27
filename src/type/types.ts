@@ -56,7 +56,7 @@ export const defaultIntroduce = '';
 export const defaultStacks = [] as string[];
 export const defaultComments = [] as string[];
 export const defaultLikes = [] as string[];
-export const defaultView = [] as number[];
+export const defaultView = [] as string[];
 
 export const nullUserData = {
   id: '',
@@ -110,5 +110,5 @@ export type CommunityItem = {
   text : string
   title : string
   uid: string
-  view : number[]
+  view : string[]
 }

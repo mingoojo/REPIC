@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { CommunityItem } from '../../type/types';
@@ -6,7 +5,6 @@ import CommunitiesItem from './CommunitiesItem';
 
 type CommunitiesListProps = {
   communityItems : CommunityItem[]
-  radioValue : string
 }
 
 const Container = styled.div`
@@ -16,18 +14,8 @@ const Container = styled.div`
 
 `;
 
-export default function CommunitiesList({ communityItems, radioValue }
+export default function CommunitiesList({ communityItems }
   :CommunitiesListProps) {
-  useEffect(() => {
-    if (radioValue === 'Recent') {
-      communityItems.sort((a, b) => b.createdTime.seconds - a.createdTime.seconds);
-    } else if (radioValue === 'View') {
-      communityItems.sort((a, b) => b.view.length - a.view.length);
-    } else if (radioValue === 'Likes') {
-      communityItems.sort((a, b) => b.likes.length - a.likes.length);
-    }
-  }, [radioValue, communityItems]);
-
   return (
     <Container>
       {

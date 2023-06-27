@@ -1,10 +1,13 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import { Radio } from '../../page/CommunityPage';
+import { Link } from 'react-router-dom';
+import useCommunityQueryStore from '../../hooks/useCommunityQueryStore';
 
 type SortingfieldProps = {
-  radioValue : Radio
-  setRadioValue: (radioValue : Radio) =>void
+  radioValue : string
+  Page : string
+  searchConfirm: () => void
+  searchText:string
+  Search:string
 }
 
 const Container = styled.div`
@@ -16,14 +19,13 @@ align-items: center;
 
   table{
     padding-block: 1.2rem;
-    input[type='radio']{
-      display: none;
-    }
-    label{
+    a{
+      color : ${(props) => props.theme.colors.textMain};
+      text-decoration: none;
       padding: 1rem;
       border-radius: 1rem;
     }
-    input[type='radio']:checked + label{
+    .active{
       background-color: ${(props) => props.theme.colors.buttonMain};
       color: ${(props) => props.theme.colors.primaryDeep}
     }
@@ -54,10 +56,13 @@ align-items: center;
   table{
     width: 100%;
     padding-block: 1.2rem;
+    margin-block: 1rem;
     th{
       display: flex;
+      a{
+        text-decoration: none;
+      }
     }
-    margin-block: 1rem;
   }
   .searchField{
     width: 100%;
@@ -69,43 +74,47 @@ align-items: center;
 }
 `;
 
-export default function Sortingfield({ radioValue, setRadioValue }:SortingfieldProps) {
-  const [searchText, setSearchText] = useState('');
+export default function Sortingfield({
+  radioValue, Page, searchConfirm, searchText, Search,
+}:SortingfieldProps) {
+  const [, communityQueryStore] = useCommunityQueryStore();
   // 엔터키 활성화 메서드
   const handleKey = (e:React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      //
+      searchConfirm();
     }
   };
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
+    communityQueryStore.changeSearchText(e.target.value);
   };
+
   return (
     <Container>
       <table>
         <thead>
           <tr>
-            <th>
-              <input type="radio" id="RecentBox" checked={radioValue === 'Recent'} onChange={() => { setRadioValue('Recent'); }} name="Sorting" />
-              <label htmlFor="RecentBox">
-                최신순
-              </label>
-              <input type="radio" id="ViewBox" checked={radioValue === 'View'} onChange={() => { setRadioValue('View'); }} name="Sorting" />
-              <label htmlFor="ViewBox">
-                조회순
-              </label>
-              <input type="radio" id="LikesBox" checked={radioValue === 'Likes'} onChange={() => { setRadioValue('Likes'); }} name="Sorting" />
-              <label htmlFor="LikesBox">
-                좋아요순
-              </label>
-            </th>
+            {
+              Search ? (
+                <th>
+                  <Link className={`${radioValue === 'Recent' && 'active'}`} to={`/communities?page=${Page}&sort=Recent&search=${Search}`}>최신순</Link>
+                  <Link className={`${radioValue === 'View' && 'active'}`} to={`/communities?page=${Page}&sort=View&search=${Search}`}>조회순</Link>
+                  <Link className={`${radioValue === 'Likes' && 'active'}`} to={`/communities?page=${Page}&sort=Likes&search=${Search}`}>좋아요순</Link>
+                </th>
+              ) : (
+                <th>
+                  <Link className={`${radioValue === 'Recent' && 'active'}`} to={`/communities?page=${Page}&sort=Recent`}>최신순</Link>
+                  <Link className={`${radioValue === 'View' && 'active'}`} to={`/communities?page=${Page}&sort=View`}>조회순</Link>
+                  <Link className={`${radioValue === 'Likes' && 'active'}`} to={`/communities?page=${Page}&sort=Likes`}>좋아요순</Link>
+                </th>
+              )
+            }
           </tr>
         </thead>
       </table>
       <div className="searchField">
         <input type="text" value={searchText} onKeyUp={handleKey} onChange={handleChange} placeholder="검색하세요" />
-        <button type="button">검색</button>
+        <button type="button" onClick={searchConfirm}>검색</button>
       </div>
     </Container>
   );

@@ -4,6 +4,7 @@ type ButtonProps = {
   label : string,
   type?: 'button' | 'submit';
   disable?:boolean
+  onClick?: () => void;
 }
 
 const ButtonItem = styled.button`
@@ -28,8 +29,16 @@ border: none;
 }
 `;
 
-export default function Button({ label, type = 'button', disable = true }:ButtonProps) {
+export default function Button({
+  label, type = 'button', disable = true, onClick = undefined,
+}:ButtonProps) {
+  const handleChange = () => {
+    if (!onClick) {
+      return;
+    }
+    onClick();
+  };
   return (
-    <ButtonItem disabled={!disable} type={type}>{label}</ButtonItem>
+    <ButtonItem disabled={!disable} onClick={handleChange} type={type}>{label}</ButtonItem>
   );
 }

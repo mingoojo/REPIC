@@ -1,6 +1,6 @@
-import { useDarkMode } from 'usehooks-ts';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
+import DarkModeButton from '../ui/DarkModeButton';
 
 const ContainerFooter = styled.div`
 padding-block: 3rem;
@@ -48,10 +48,10 @@ div{
     display: block;
     padding: 3rem;
     h1{
-          font-family: 'Noto Sans CJK KR';
-          font-style: normal;
-          font-weight: 500;
-        }
+      font-family: 'Noto Sans CJK KR';
+      font-style: normal;
+      font-weight: 500;
+    }
     .footerIntro{
       width: 100%;
       margin-bottom: 3rem;
@@ -71,10 +71,6 @@ div{
 `;
 
 export default function Footer() {
-  const { toggle } = useDarkMode();
-  function handleClick() {
-    toggle();
-  }
   return (
     <ContainerFooter>
       <div className="footerBox">
@@ -131,7 +127,7 @@ export default function Footer() {
               Copyright©2023 MingooJo.All rights reserved.
             </li>
             <li>
-              <button type="button" onClick={handleClick}>다크모드</button>
+              <DarkModeButton />
             </li>
           </ul>
         </div>

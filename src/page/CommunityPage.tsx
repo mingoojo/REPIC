@@ -1,26 +1,35 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import CommunityView from '../components/community/CommunityView';
 import useCommunityStore from '../hooks/useCommunityStore';
-
-export type Radio = 'Recent' | 'View' | 'Likes'
+import useCommunityQueryStore from '../hooks/useCommunityQueryStore';
 
 export default function CommunityPage() {
-  const navigate = useNavigate();
   const [params] = useSearchParams();
   const [{ communityItems }, communityStore] = useCommunityStore();
-
-  const [radioValue, setRadioValue] = useState<Radio>('Recent');
+  const [{ searchText, radioValue }, communityQueryStore] = useCommunityQueryStore();
 
   const Page = params.get('page') ?? '';
+  const Sort = params.get('sort') ?? '';
+  const Search = params.get('search') ?? '';
 
   useEffect(() => {
-    navigate(`/communities?page=1&sort=${radioValue}`);
-  }, [radioValue]);
+    communityQueryStore.changeRadioValue(Sort);
+  }, [Sort]);
+
+  useEffect(() => {
+    communityQueryStore.changeSearchText(Search);
+  }, [Search, Sort]);
 
   useEffect(() => {
     communityStore.readCommnuityItemsInfo();
   }, [communityStore]);
+
+  useEffect(() => {
+    if (Search === '') {
+      communityQueryStore.changeSearchText('');
+    }
+  }, []);
 
   if (!communityItems.length) {
     return null;
@@ -29,8 +38,10 @@ export default function CommunityPage() {
   return (
     <CommunityView
       radioValue={radioValue}
-      setRadioValue={setRadioValue}
       communityItems={communityItems}
+      Page={Page}
+      Search={Search}
+      searchText={searchText}
     />
   );
 }
