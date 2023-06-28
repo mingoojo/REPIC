@@ -38,7 +38,7 @@ margin-block: 1.5rem;
   }
 `;
 
-export default function FooterField({
+export default function CommunityFooterField({
   Page, Search, communityItems, radioValue,
 }:FooterFieldProps) {
   const [pageLength, setPageLength] = useState(0);

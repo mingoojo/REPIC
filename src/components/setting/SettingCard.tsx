@@ -13,6 +13,8 @@ type SettingCardProps = {
 
 const Container = styled.div`
   width: 62%;
+  padding: 0rem 1rem 2rem 1rem;
+  margin-bottom: 2.5rem;
 
   @media (max-width: 720px) {
     width: 100%;

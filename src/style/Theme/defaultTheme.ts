@@ -9,6 +9,7 @@ const defaultTheme = {
     buttonMain: '#ECECEC',
     primary: '#00A9E6',
     primaryDeep: '#008EC1',
+    scheme: 'light',
   },
 };
 

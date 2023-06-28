@@ -112,3 +112,20 @@ export type CommunityItem = {
   uid: string
   view : string[]
 }
+
+export type Project = {
+  comments : Comment[],
+  createdTime : CreatedTime,
+  startDate : string,
+  endDate : string,
+  likes : string[],
+  proceedingMethod: string,
+  recruit : string,
+  stacks : string[],
+  status : boolean,
+  text : string,
+  title : string,
+  uid : string,
+  view : number[],
+  id:string
+}

@@ -6,7 +6,8 @@ type StackItemProps = {
   UserStacks: string[]
 }
 
-const Container = styled.div`
+const Container = styled.li`
+list-style-type: none;
   input{
     display: none;
   }
@@ -28,20 +29,30 @@ const Container = styled.div`
     padding: 0;
     display: inline;
     margin: 1rem;
-  div{
-    width: 35px;
-    height: 35px;
-    margin: 0rem .3rem 0rem .3rem;
-    border-radius: 2rem;
-    background-color: white;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+    div{
+      width: 35px;
+      height: 35px;
+      margin: 0rem 4px 0rem 4px;
+      border-radius: 2rem;
+      background-color: white;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    div:hover{
+      cursor: pointer;
+    }
+    span{
+      position: absolute;
+      font-size: 1.2rem;
+      width: 43px;
+      text-align: center;
+      visibility: hidden;
+    }
+    div:hover + span{
+      visibility: visible;
+    }
   }
-  div:hover{
-    cursor: pointer;
-  }
-}
 `;
 
 export default function StackItem({ label, onChange = undefined, UserStacks }:StackItemProps) {
@@ -56,6 +67,7 @@ export default function StackItem({ label, onChange = undefined, UserStacks }:St
       <input type="checkBox" id={`${label}`} onChange={handleChange} checked={UserStacks.includes(`${label}`)} />
       <label className="stackLabel" htmlFor={`${label}`}>
         <div className={`${label}`} style={{ backgroundImage: `url(/images/library/resized/${label}.png)` }} />
+        <span className="test">{label}</span>
       </label>
     </Container>
   );

@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { CommunityItem, UserData } from '../../type/types';
-import getCreatedTime from '../../utils/getCreatedTime';
 import AuthorInfo from './AuthorInfo';
 import ItemInfo from './ItemInfo';
 

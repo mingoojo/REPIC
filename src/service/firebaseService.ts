@@ -15,6 +15,7 @@ import {
 } from '../firebase/config';
 import UserInfoUpdateStore from '../store/UserInfoUpdateStore';
 import {
+  Comment,
   defaultComments, defaultIntroduce, defaultLikes, defaultStacks,
   defaultThumbNail, defaultView, UserData,
 } from '../type/types';
@@ -25,6 +26,12 @@ type addDocumentProps = {
   nickName?: string,
   text?:string,
   title?:string,
+  stacks? : string[],
+  startDate?: string,
+  endDate?: string,
+  proceedingMethod?: string,
+  recruit?: string,
+  status?: boolean
 }
 
 export default class FirebaseService {
@@ -79,7 +86,8 @@ export default class FirebaseService {
   // 정보 업데이트 어레이 : 작성
   async writeDocumentFieldArray({
     tranaction, docId, updateKey, updateValue,
-  }:{tranaction:string, docId:string, updateKey:string, updateValue:string}):Promise<void> {
+  }:{tranaction:string, docId:string, updateKey:string, updateValue:string | Comment})
+  :Promise<void> {
     const uid = this.AppAuth.currentUser?.uid || '';
     const Ref = doc(appFireStore, tranaction, docId);
     await updateDoc(Ref, {
@@ -89,7 +97,8 @@ export default class FirebaseService {
 
   // 글작성
   async addDocument({
-    email, nickName, transaction, text, title,
+    transaction,
+    email, nickName, text, title, stacks, startDate, endDate, proceedingMethod, recruit, status,
   }:addDocumentProps):Promise<void> {
     const createdTime = timeStamp.fromDate(new Date());
     const uid = this.AppAuth.currentUser?.uid || '';
@@ -118,10 +127,29 @@ export default class FirebaseService {
       view: defaultView,
     };
 
+    // 프로젝트 글 작성
+    const ProjectDoc = {
+      comments: defaultComments,
+      createdTime,
+      likes: defaultLikes,
+      text,
+      title,
+      uid,
+      view: defaultView,
+      stacks,
+      startDate,
+      endDate,
+      proceedingMethod,
+      recruit,
+      status,
+    };
+
     if (transaction === 'Users') {
       await addDoc(colRef, UserDoc);
     } else if (transaction === 'Communities') {
       await addDoc(colRef, CommnuityDoc);
+    } else if (transaction === 'Projects') {
+      await addDoc(colRef, ProjectDoc);
     }
   }
 

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import CommunitiesList from './CommunitiesList';
-import FooterField from './FooterField';
 import { CommunityItem } from '../../type/types';
+import CommunityFooterField from './CommunityFooterField';
 
 type CommunitiesTableBodyProps = {
   Page:string
@@ -25,7 +25,7 @@ export default function CommunitiesTableBody({
   return (
     <Container>
       <CommunitiesList communityItems={sortedCommunityItems} />
-      <FooterField
+      <CommunityFooterField
         Page={Page}
         Search={Search}
         communityItems={filteredCommunityItems}

@@ -11,9 +11,9 @@ const Container = styled.div`
   }
   .stackBox{
     .front, .back, .global{
-      height: 50px;
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
     }
   }
 `;

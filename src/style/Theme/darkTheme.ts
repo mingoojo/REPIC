@@ -9,6 +9,7 @@ const darkTheme = {
     buttonMain: '#222',
     primary: '#00A9E6',
     primaryDeep: '#008EC1',
+    scheme: 'dark',
   },
 };
 

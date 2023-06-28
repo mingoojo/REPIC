@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CommunityItem } from '../../type/types';
 import Sortingfield from './Sortingfield';
 import CommunitiesTableBody from './CommunitiesTableBody';
-import useCommunityStore from '../../hooks/useCommunityStore';
-import getSortedItem from '../../utils/getSortedItem';
+import getSortedCommunityItem from '../../utils/getSortedCommunityItem';
 
 type CommunitiesTableProps = {
   radioValue : string,
@@ -24,13 +22,13 @@ export default function CommunitiesTable({
 }
   :CommunitiesTableProps) {
   const navigate = useNavigate();
-  const { sortedItems } = getSortedItem({ Search, communityItems });
+  const { sortedItems } = getSortedCommunityItem({ Search, communityItems });
 
   const searchConfirm = () => {
     if (searchText) {
       navigate(`/communities?page=1&sort=${radioValue}&search=${searchText}`);
     } else if (!searchText) {
-      navigate(`/communities?page=${Page}&sort=${radioValue}`);
+      navigate(`/communities?page=1&sort=${radioValue}`);
     }
   };
 

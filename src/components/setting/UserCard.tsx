@@ -7,11 +7,11 @@ type UserCardProps = {
 
 const Container = styled.div`
 padding : 1rem;
-border-right: 1px solid ${(props) => props.theme.colors.textMain};
 width: 36%;
 min-height: 80vh;
 margin-bottom: 3rem;
 text-align: center;
+border-right: 1px solid ${(props) => props.theme.colors.textMain};
   h1{
     font-size: 3rem;
     font-weight: normal;
