@@ -28,7 +28,7 @@ export default function SetRecruit() {
         <option value="recrute">선택해주세요</option>
         <option value="기획">기획</option>
         <option value="디자인">디자인</option>
-        <option value="프론트엔드">프론트엔드</option>
+        <option value="프론트앤드">프론트엔드</option>
         <option value="백앤드">백앤드</option>
       </select>
     </Container>

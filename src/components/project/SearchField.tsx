@@ -20,10 +20,16 @@ const Container = styled.tr`
     color: ${(props) => props.theme.colors.textMain};
     border: none;
   }
+@media (max-width: 720px){
+  display: block;
+  margin-top: 1rem;
+  white-space: nowrap;
+}
 `;
 export default function SearchField() {
   const navigate = useNavigate();
   const [{ searchText, radioValue }, projectQueryStore] = useProjectQueryStore();
+
   const searchConfirm = () => {
     if (searchText) {
       navigate(`/projects?page=1&filter=${radioValue}&search=${searchText}`);

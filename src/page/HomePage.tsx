@@ -1,7 +1,7 @@
+import HomeView from '../components/home/HomeView';
+
 export default function HomePage() {
   return (
-    <div>
-      HomePage
-    </div>
+    <HomeView />
   );
 }

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { CommunityItem } from '../../type/types';
-import CommentItem from './CommentItem';
+import CommentItem from '../ui/CommentItem';
 
 type CommentListProps = {
   communityItem : CommunityItem[]

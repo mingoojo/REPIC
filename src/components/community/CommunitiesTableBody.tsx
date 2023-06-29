@@ -18,18 +18,18 @@ export default function CommunitiesTableBody({
   Page, Search, radioValue, filteredCommunityItems,
 }
   :CommunitiesTableBodyProps) {
-  const sortedCommunityItems = filteredCommunityItems.filter((communityItem, index) => (
+  const routedCommunityItems = filteredCommunityItems.filter((communityItem, index) => (
     index < (Number(Page)) * 10 && (Number(Page) - 1) * 10 <= index
   ));
 
   return (
     <Container>
-      <CommunitiesList communityItems={sortedCommunityItems} />
+      <CommunitiesList communityItems={routedCommunityItems} />
       <CommunityFooterField
         Page={Page}
         Search={Search}
-        communityItems={filteredCommunityItems}
         radioValue={radioValue}
+        communityItems={filteredCommunityItems}
       />
     </Container>
   );

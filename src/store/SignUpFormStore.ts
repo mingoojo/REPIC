@@ -30,6 +30,10 @@ export default class SignUpFormStore {
       });
       this.setIsPending(false);
       this.setError(false);
+      this.changeEmail('');
+      this.changeDisplayName('');
+      this.changePassword('');
+      this.changePasswordComfirm('');
     } catch (error) {
       this.setError(true);
       this.setIsPending(false);

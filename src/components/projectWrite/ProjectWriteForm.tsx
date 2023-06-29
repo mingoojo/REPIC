@@ -35,7 +35,7 @@ export default function ProjectWriteForm() {
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     projectFormStore.addDocument().then(() => {
-      navigate('/projects');
+      navigate('/projects?page=1&filter=All');
     });
   };
   return (

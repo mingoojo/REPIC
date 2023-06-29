@@ -36,7 +36,7 @@ export default function AuthorInfo({ UserInfo, communityItem }:AuthorInfoProps) 
   const { date } = getCreatedTime({ createdTime: communityItem[0].createdTime });
   return (
     <Container className="userInfo">
-      <Link to={`/mypage/${UserInfo[0].uid}`}>
+      <Link to={`/user/${UserInfo[0].uid}?sort=WriteCommunity`}>
         {
           UserInfo[0].Initial ? (
             <div className="userThumbNail" style={{ backgroundImage: `url(${UserInfo[0].thumbnailURL})` }} />

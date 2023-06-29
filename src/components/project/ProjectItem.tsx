@@ -16,11 +16,15 @@ padding: 1rem;
     text-decoration: none;
     color: ${(props) => props.theme.colors.textMain};
     .projectCard{
-      border: 1px solid #222;
+      border: 1px solid ${(props) => props.theme.colors.textMain};
       border-radius: .5rem;
       padding: .5rem;
       .itemCard{
       }
+    }
+    .projectCard:hover{
+      border: 1px solid ${(props) => props.theme.colors.primary};
+      background-color: ${(props) => props.theme.colors.backgroundThird};
     }
   }
 @media (max-width: 720px){

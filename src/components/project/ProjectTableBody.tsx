@@ -4,6 +4,7 @@ import ProjectItem from './ProjectItem';
 
 type ProjectTableBodyProps = {
   projects : Project[]
+  Page: string
 }
 
 const Container = styled.div`
@@ -11,11 +12,14 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function ProjectTableBody({ projects }:ProjectTableBodyProps) {
+export default function ProjectTableBody({ projects, Page }:ProjectTableBodyProps) {
+  const routedProjectsItems = projects.filter((project, index) => (
+    index < (Number(Page)) * 12 && (Number(Page) - 1) * 12 <= index
+  ));
   return (
     <Container>
       {
-        projects.map((project) => (
+        routedProjectsItems.map((project) => (
           <ProjectItem key={project.id} project={project} />
         ))
       }

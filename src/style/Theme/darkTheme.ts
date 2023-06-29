@@ -2,6 +2,7 @@ const darkTheme = {
   colors: {
     backgroundMain: '#333',
     backgroundSecond: '#344346',
+    backgroundThird: '#344349',
     textMain: 'white',
     textSecond: '#7A7676',
     shadowMain: '#777',

@@ -70,7 +70,7 @@ export default function HeaderMain() {
                 정보수정
               </p>
             </Link>
-            <Link to={`/mypage/${CurrentUser.uid}`}>마이페이지</Link>
+            <Link to={`/user/${CurrentUser.uid}?sort=WriteCommunity`}>마이페이지</Link>
             <LogOutButton />
           </li>
         ) : (

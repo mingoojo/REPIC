@@ -22,6 +22,8 @@ export default class LogInFormStore {
       await firebaseService.login({ email: this.email, password: this.password });
       this.setIsPending(false);
       this.setError(false);
+      this.changeEmail('');
+      this.changePassword('');
     } catch (error) {
       this.setError(true);
       this.setIsPending(false);

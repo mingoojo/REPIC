@@ -20,8 +20,8 @@ export default function ProjectTable({ Page, Search, projects }:ProjectTableProp
   return (
     <Container>
       <ProjectHeader Page={Page} Search={Search} />
-      <ProjectTableBody projects={sortedItems} />
-      <ProjectFooterField />
+      <ProjectTableBody projects={sortedItems} Page={Page} />
+      <ProjectFooterField projects={sortedItems} Page={Page} Search={Search} />
     </Container>
   );
 }

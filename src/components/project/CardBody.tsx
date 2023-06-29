@@ -7,16 +7,22 @@ type CardBodyProps = {
 
 const Container = styled.div`
   .textBody{
-    p{
-      margin-block: .5rem;
-      padding: 1rem;
-      font-size: 1.4rem;
-    }
+    .textBox{
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    display: block;
+    width: 100%;
+    padding: 1rem;
+  }
   }
   .stackBox{
     margin-block: 1rem;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     .stack{
       width: 30px;
       height: 30px;
@@ -26,6 +32,9 @@ const Container = styled.div`
       background-position: center;
       border-radius: 20px;
     }
+    .hidden{
+      display: none;
+    }
   }
 `;
 
@@ -33,14 +42,17 @@ export default function CardBody({ project }:CardBodyProps) {
   return (
     <Container>
       <div className="textBody">
-        <p>
+        <p className="textBox">
           {project.text}
         </p>
       </div>
       <div className="stackBox">
-        {project.stacks.map((stack) => (
-          <div className="stack" key={stack} style={{ backgroundImage: `url(/images/library/resized/${stack}.png)` }} />
+        {project.stacks.map((stack, index) => (
+          <div className={index >= 4 ? 'hidden' : 'stack'} key={stack} style={{ backgroundImage: `url(/images/library/resized/${stack}.png)` }} />
         ))}
+        {
+          project.stacks.length >= 5 && <div>...</div>
+        }
       </div>
     </Container>
   );

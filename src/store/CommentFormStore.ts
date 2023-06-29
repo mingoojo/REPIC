@@ -15,8 +15,10 @@ export default class CommentFormStore {
   isPending = false;
 
   // 댓글 업데이트
-  async updateComment({ docId, uid, createdTime }:{
-    docId:string, uid : string, createdTime:CreatedTime}) {
+  async updateComment({
+    tranaction, docId, uid, createdTime,
+  }:{
+    docId:string, uid : string, createdTime:CreatedTime, tranaction:string}) {
     this.setIsPending(true);
     this.setError(false);
     const likes = [] as string[];
@@ -28,7 +30,7 @@ export default class CommentFormStore {
     };
     try {
       await firebaseService.writeDocumentFieldArray({
-        tranaction: 'Communities', docId, updateKey: 'comments', updateValue,
+        tranaction, docId, updateKey: 'comments', updateValue,
       });
       this.setIsPending(false);
       this.setError(false);

@@ -13,32 +13,35 @@ margin-top: 1rem;
 border-bottom: 1px solid ${(props) => props.theme.colors.textMain};
 padding: 1rem;
 margin-bottom: 1rem;
-div{
-  display: flex;
-  align-items: center;
-  margin-bottom: .5rem;
-  ul{
-    font-size: 1.5rem;
+  div{
     display: flex;
+    align-items: center;
     margin-bottom: .5rem;
-    li{
-      color: ${(props) => props.theme.colors.textSecond};
+    ul{
+      font-size: 1.5rem;
+      display: flex;
+      margin-bottom: .5rem;
+      li{
+        color: ${(props) => props.theme.colors.textSecond};
+      }
+    }
+    p{
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+    }
+    a{
+      text-decoration: none;
+      color: ${(props) => props.theme.colors.textMain};
+      font-size: 1.5rem;
+      margin-right: 2rem;
+      font-family: 'Noto Sans CJK KR';
+      font-weight: bold;
     }
   }
-  p{
-    font-size: 1.5rem;
-    line-height: 2.2rem;
-  }
-  a{
-    text-decoration: none;
+  .comentTextBox{
+    font-size: 1.2rem;
     color: ${(props) => props.theme.colors.textMain};
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-right: 2rem;
-    font-family: 'Noto Sans CJK KR';
-    font-weight: normal;
   }
-}
 `;
 
 export default function CommentItem({ comment }:CommentItemProps) {
@@ -53,7 +56,7 @@ export default function CommentItem({ comment }:CommentItemProps) {
       <div>
         <ul>
           <li>
-            <Link to={`/mypage/${gotUserInfo.uid}`}>
+            <Link to={`/user/${gotUserInfo.uid}?sort=WriteCommunity`}>
               {gotUserInfo.nickName}
             </Link>
           </li>
@@ -62,7 +65,7 @@ export default function CommentItem({ comment }:CommentItemProps) {
           </li>
         </ul>
       </div>
-      <div>
+      <div className="comentTextBox">
         <p>
           {comment.text}
         </p>

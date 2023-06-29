@@ -8,6 +8,7 @@ type getCommunityItemProps = {
 
 export default function getCommunityItem({ DocId }:getCommunityItemProps) {
   const [{ communityItems }, communityStore] = useCommunityStore();
+
   useEffect(() => {
     communityStore.readCommnuityItemsInfo();
   }, []);

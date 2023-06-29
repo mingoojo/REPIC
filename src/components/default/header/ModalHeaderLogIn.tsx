@@ -18,7 +18,7 @@ export default function ModalHeaderLogIn({ OnClick, userId }:HeaderLogInProps) {
   return (
     <>
       <ModalMenuItem label="정보수정" path={`/setting/${userId}`} onclick={OnClick} />
-      <ModalMenuItem label="마이페이지" path={`/mypage/${userId}`} onclick={OnClick} />
+      <ModalMenuItem label="마이페이지" path={`/user/${userId}?sort=WriteCommunity`} onclick={OnClick} />
       <Container>
         <LogOutButton />
       </Container>

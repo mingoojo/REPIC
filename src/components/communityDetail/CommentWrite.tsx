@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useEffectOnce } from 'usehooks-ts';
 import { appAuth, timeStamp } from '../../firebase/config';
 import useCommentFormStore from '../../hooks/useCommentFormStore';
 import { CommunityItem } from '../../type/types';
@@ -35,6 +36,10 @@ export default function CommentWrite({ communityItem }:CommentWriteProps) {
   const [{ comment }, commentFormStore] = useCommentFormStore();
   const navigate = useNavigate();
 
+  useEffectOnce(() => {
+    commentFormStore.changeComment('');
+  });
+
   const handleClick = () => {
     const uid = appAuth.currentUser?.uid || '';
     const createdTime = timeStamp.fromDate(new Date());
@@ -43,7 +48,9 @@ export default function CommentWrite({ communityItem }:CommentWriteProps) {
       alert('로그인해주세요');
       navigate('/login');
     } else {
-      commentFormStore.updateComment({ docId: communityItem[0].id, uid, createdTime });
+      commentFormStore.updateComment({
+        tranaction: 'Communities', docId: communityItem[0].id, uid, createdTime,
+      });
     }
   };
 
