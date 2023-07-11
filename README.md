@@ -4,7 +4,7 @@
 
 - 이름 : 조민구
 - [Github](https://github.com/mingoojo)
-- [트러블 슈팅](https://swyks112s-organization.gitbook.io/mingoojo/)
+- [트러블 슈팅](https://www.notion.so/REPIC-Trouble-Shooting-9bc97aba7ca04292a52d6773352df031)
 
 ## 개발 목적
 
