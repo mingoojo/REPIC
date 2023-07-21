@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { appAuth } from '../../firebase/config';
 import UserWelcome from './UserWelcome';
+import HomeBody from './HomeBody';
 
 const Container = styled.div`
   
@@ -8,12 +9,12 @@ const Container = styled.div`
 
 export default function HomeView() {
   const UserInfo = appAuth.currentUser;
-  if (!UserInfo) {
-    return null;
-  }
   return (
     <Container>
-      <UserWelcome />
+      {
+        UserInfo ? (<UserWelcome />) : null
+      }
+      <HomeBody />
     </Container>
   );
 }

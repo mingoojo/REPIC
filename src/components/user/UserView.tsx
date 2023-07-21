@@ -11,7 +11,7 @@ type UserViewProps = {
 }
 
 const Container = styled.div`
-  
+  min-height: 80vh;
 `;
 
 export default function UserView({ UserInfo, userId, Sort }:UserViewProps) {
