@@ -1,23 +1,63 @@
-# React X FireBase  온라인 커뮤니티 만들기 프로젝트
+## 🖥️ 프로젝트 소개
 
-## 작성자
+개발자의 지식 공유 및 사이드 프로젝트 팀 구성을 위한 사이트로, 유저와 유저가 직접 커뮤니케이션하고 프로젝트를 기획하기 위한 사람들을 만나는 커뮤니케이션 사이트를 제공한다는 목적으로 개발하였습니다.
 
-- 이름 : 조민구
-- [Github](https://github.com/mingoojo)
-- [트러블 슈팅](https://www.notion.so/REPIC-Trouble-Shooting-9bc97aba7ca04292a52d6773352df031)
+- **`Author` :**  Mingoo Jo
+- **`Project` :** REPIC - 커뮤니티사이트
+- **`Project duration` :** 2023.05.29 - 2023.06.30
 
-## 개발 목적
+## 📌 주요 기능
 
-- React와 fireBase를 활용하여 실시간 통신이 되는 커뮤니티 사이트를 만든다.
+#### 로그인
+- DB값 검증
+
+#### 회원가입
+- 이메일 기반 회원가입
+- ID 중복 체크
+
+#### 커뮤니티 페이지
+- 글 목록 확인
+- sorting 및 search 기능
+
+#### 커뮤니티 상세페이지
+- 글 상세보기
+- 좋아요 및 댓글 기능
+
+#### 프로젝트 페이지
+- 글 목록 확인
+- sorting 및 search 기능
+
+#### 커뮤니티 상세페이지
+- 글 상세보기
+- 좋아요 및 댓글 기능
+
+#### 정보수정
+- 개인 정보 수정 및 저장
+- 사진 수정 기능
+
+#### 마이페이지
+- 내가 작성한 글 보기
+- 개인 프로필 게시
 
 
-## 구현 기능
+## 🌟 Pages & Features
+|                                                              |                                                              |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|        **Home Page**                           |                 **Products Page**                 |
+| ![Home Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-01.jpg?raw=true) |![Products Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-02.jpg?raw=true)|
+|        **Product Detail Page**                           |                 **Signup Page**                 |
+|![Product Detail Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-03.jpg?raw=true)|![Signup Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-04.jpg?raw=true)|
+|                    **Login Page**                     |                     **Cart Page**                    |
+| ![Login Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-05.jpg?raw=true)| ![Cart Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-06.jpg?raw=true)|
+|                    **Order Page**                     |                 **Postal Code Search**                  |
+| ![Order Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-07.jpg?raw=true) | ![Postal Code Search](https://github.com/mingoojo/project-shop-image/blob/main/pages-08.jpg?raw=true) |
+|                    **Payment**                     |                 **OrderList Page**                  |
+|![Payment](https://github.com/mingoojo/project-shop-image/blob/main/pages-09.jpg?raw=true) | ![OrderList](https://github.com/mingoojo/project-shop-image/blob/main/pages-10.jpg?raw=true)|
+|                    **Order Detail Page**                     |
+|![review_detail](https://github.com/mingoojo/project-shop-image/blob/main/pages-11.jpg?raw=true)|
+<br/>
 
-- FireBase의 Authentication를 활용한 로그인 기능
-- FireBase의 FireBase 활용한 CRUD기능
-- 등등 업데이트예정
-
-## 세팅 목록
+## ⚙️ 개발 환경 세팅
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [ESLint](https://eslint.org/)
@@ -34,11 +74,5 @@
 - [jest-dom](https://github.com/testing-library/jest-dom)
     - [MSW](https://github.com/mswjs/msw)
 - [CodeceptJS](https://codecept.io/)
-- [FireBase](https://console.firebase.google.com/?hl=ko)
-
-
-## 트러블 슈팅
-1. firebase의 로딩시간과 랜더싱시간의 차이문제
-2. 데이터관리시, store의 공유로 인한 문제
-3. header의 로그아웃이 usefetchuserstore에서 작동이 안되는 문제
-4. sorting, routing, filter 한페이지에서 해결하기!!
+- [dotenv](https://github.com/motdotla/dotenv)
+- [firebase](https://firebase.google.com/?hl=ko)
