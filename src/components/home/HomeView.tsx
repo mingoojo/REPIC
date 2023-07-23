@@ -4,7 +4,7 @@ import UserWelcome from './UserWelcome';
 import HomeBody from './HomeBody';
 
 const Container = styled.div`
-  
+
 `;
 
 export default function HomeView() {

@@ -43,18 +43,16 @@
 ## 🌟 Pages & Features
 |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|        **Home Page**                           |                 **Products Page**                 |
-| ![Home Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-01.jpg?raw=true) |![Products Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-02.jpg?raw=true)|
-|        **Product Detail Page**                           |                 **Signup Page**                 |
-|![Product Detail Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-03.jpg?raw=true)|![Signup Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-04.jpg?raw=true)|
-|                    **Login Page**                     |                     **Cart Page**                    |
-| ![Login Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-05.jpg?raw=true)| ![Cart Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-06.jpg?raw=true)|
-|                    **Order Page**                     |                 **Postal Code Search**                  |
-| ![Order Page](https://github.com/mingoojo/project-shop-image/blob/main/pages-07.jpg?raw=true) | ![Postal Code Search](https://github.com/mingoojo/project-shop-image/blob/main/pages-08.jpg?raw=true) |
-|                    **Payment**                     |                 **OrderList Page**                  |
-|![Payment](https://github.com/mingoojo/project-shop-image/blob/main/pages-09.jpg?raw=true) | ![OrderList](https://github.com/mingoojo/project-shop-image/blob/main/pages-10.jpg?raw=true)|
-|                    **Order Detail Page**                     |
-|![review_detail](https://github.com/mingoojo/project-shop-image/blob/main/pages-11.jpg?raw=true)|
+|        **Home Page**                           |                 **Login Page**                 |
+| ![Home Page](https://github.com/mingoojo/project-repic-image/blob/main/home.jpg?raw=true) |![Login Page](https://github.com/mingoojo/project-repic-image/blob/main/login.jpg?raw=true)|
+|        **Signup Page**                           |                 **Community Page**                 |
+|![Signup Page](https://github.com/mingoojo/project-repic-image/blob/main/login.jpg?raw=true)|![Community Page](https://github.com/mingoojo/project-repic-image/blob/main/community.jpg?raw=true)|
+|                    **CommunityDetail Page**                     |                     **Project Page**                    |
+| ![CommunityDetail Page](https://github.com/mingoojo/project-repic-image/blob/main/communityDetail.jpg?raw=true)| ![Project Page](https://github.com/mingoojo/project-repic-image/blob/main/projects.jpg?raw=true)|
+|                    **ProjectDetail Page**                     |                 **Setting Code Search**                  |
+| ![ProjectDetail Page](https://github.com/mingoojo/project-repic-image/blob/main/projectDetail.jpg?raw=true) | ![Setting Page](https://github.com/mingoojo/project-repic-image/blob/main/setting.jpg?raw=true) |
+|                    **My Page**                     |
+|![My Page](https://github.com/mingoojo/project-repic-image/blob/main/mypage.jpg?raw=true) |
 <br/>
 
 ## ⚙️ 개발 환경 세팅

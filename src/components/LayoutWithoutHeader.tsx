@@ -14,7 +14,7 @@ padding: 0 1rem 0 1rem;
 margin-top: 3rem;
 `;
 
-export default function Layout() {
+export default function LayoutWithoutHeader() {
   const { setResize, delResize } = getWindowSize();
   const [{ connection }, ConnectionStore] = useFireBaseConnectionStore();
 
@@ -39,7 +39,6 @@ export default function Layout() {
 
   return (
     <div>
-      <Header />
       <Container>
         <Outlet />
       </Container>

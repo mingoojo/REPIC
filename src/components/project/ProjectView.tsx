@@ -18,7 +18,6 @@ export default function ProjectView({ Page, Search, projects }:ProjectViewProps)
   const forceUpdate = useForceUpdate();
   const [sortedItem, setSortedItem] = useState(projects);
   const [{ radioValue }] = useProjectQueryStore();
-  // console.log(projects[0].recruit);
 
   // 필터하기
   useEffect(() => {
