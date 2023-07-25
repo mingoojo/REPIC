@@ -1,0 +1,50 @@
+@font-face {
+  font-family: Noto Sans CJK KR;
+  font-style: normal;
+  font-weight: 100;
+  src: url("NotoSansKR-Light.f1360396.woff2") format("woff2"), url("NotoSansKR-Light.0ce0f95a.woff") format("woff"), url("NotoSansKR-Light.08d897cc.otf") format("truetype");
+}
+
+@font-face {
+  font-family: Noto Sans CJK KR;
+  font-style: normal;
+  font-weight: normal;
+  src: url("NotoSansKR-Regular.4e90d46c.woff2") format("woff2"), url("NotoSansKR-Regular.3525e97f.woff") format("woff"), url("NotoSansKR-Regular.9f6fe569.otf") format("truetype");
+}
+
+@font-face {
+  font-family: Noto Sans CJK KR;
+  font-style: normal;
+  font-weight: 500;
+  src: url("NotoSansKR-Medium.c814c037.woff2") format("woff2"), url("NotoSansKR-Medium.83d56230.woff") format("woff"), url("NotoSansKR-Medium.584bb7a3.otf") format("truetype");
+}
+
+@font-face {
+  font-family: Noto Sans CJK KR;
+  font-style: normal;
+  font-weight: bold;
+  src: url("NotoSansKR-Bold.c7d9af41.woff2") format("woff2"), url("NotoSansKR-Bold.82a544e5.woff") format("woff"), url("NotoSansKR-Bold.ca2cece8.otf") format("truetype");
+}
+
+@font-face {
+  font-family: GmarketSansMedium;
+  font-weight: normal;
+  font-style: normal;
+  src: url("GmarketSansMedium.ab9a4383.otf") format("truetype");
+}
+
+@font-face {
+  font-family: GmarketSansLight;
+  font-weight: normal;
+  font-style: normal;
+  src: url("GmarketSansLight.5143239f.otf") format("truetype");
+}
+
+@font-face {
+  font-family: GmarketSansBold;
+  font-weight: normal;
+  font-style: normal;
+  src: url("GmarketSansBold.1cdb5778.otf") format("truetype");
+}
+
+/*# sourceMappingURL=index.3ea53867.css.map */

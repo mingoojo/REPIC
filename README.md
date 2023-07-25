@@ -5,6 +5,7 @@
 - **`Author` :**  Mingoo Jo
 - **`Project` :** REPIC - 커뮤니티사이트
 - **`Project duration` :** 2023.05.29 - 2023.06.30
+- **`Deployed URl` :** [URL](https://project-study-mingoojo.web.app/)
 
 ## 📌 주요 기능
 
