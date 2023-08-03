@@ -41,6 +41,10 @@
 - 개인 프로필 게시
 
 
+## 🌟 Architecture
+[Architecture](https://github.com/mingoojo/project-repic-image/blob/main/repic-architecture.jpg?raw=true)
+
+
 ## 🌟 Pages & Features
 |                                                              |                                                              |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
