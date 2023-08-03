@@ -6,6 +6,7 @@
 - **`Project` :** REPIC - 커뮤니티사이트
 - **`Project duration` :** 2023.05.29 - 2023.06.30
 - **`Deployed URl` :** [REPIC](https://project-study-mingoojo.web.app/)
+- **`TroubleShooting` :** [Notion Link](https://fanatical-tibia-7d0.notion.site/REPIC-Trouble-Shooting-Refactoring-77b4fa61508f49b6b44e721685fb8541?pvs=4)
 
 ## 📌 주요 기능
 
@@ -39,10 +40,6 @@
 #### 마이페이지
 - 내가 작성한 글 보기
 - 개인 프로필 게시
-
-
-## 🧑🏻‍💻 TroubleShooting
-[Notion-Link_TroubleShooting](https://fanatical-tibia-7d0.notion.site/REPIC-Trouble-Shooting-Refactoring-77b4fa61508f49b6b44e721685fb8541?pvs=4)
 
 ## 🛠️ Architecture
 ![Architecture](https://github.com/mingoojo/project-repic-image/blob/main/repic-architecture.jpg?raw=true)
