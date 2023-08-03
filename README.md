@@ -42,7 +42,7 @@
 
 
 ## 🌟 Architecture
-[Architecture](https://github.com/mingoojo/project-repic-image/blob/main/repic-architecture.jpg?raw=true)
+![Architecture](https://github.com/mingoojo/project-repic-image/blob/main/repic-architecture.jpg?raw=true)
 
 
 ## 🌟 Pages & Features
