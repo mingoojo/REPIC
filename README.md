@@ -41,7 +41,10 @@
 - 개인 프로필 게시
 
 
-## 🌟 Architecture
+## 🧑🏻‍💻 TroubleShooting
+[Notion-Link_TroubleShooting](https://fanatical-tibia-7d0.notion.site/REPIC-Trouble-Shooting-Refactoring-77b4fa61508f49b6b44e721685fb8541?pvs=4)
+
+## 🛠️ Architecture
 ![Architecture](https://github.com/mingoojo/project-repic-image/blob/main/repic-architecture.jpg?raw=true)
 
 
